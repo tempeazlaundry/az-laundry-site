@@ -20,6 +20,7 @@ import {
   ShieldCheck,
   Star,
   Lock,
+  Tag,
 } from "lucide-react";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -160,13 +161,12 @@ function Hero() {
         >
           <motion.button
             onClick={scrollToPricing}
-            whileHover={reduceMotion ? {} : { scale: 1.02 }}
             whileTap={reduceMotion ? {} : { scale: 0.96 }}
             transition={{ duration: 0.15 }}
-            className="w-full bg-maroon hover:bg-maroon-dark text-white rounded-xl py-4 px-6 flex flex-col items-center gap-0.5 shadow-md cursor-pointer transition-colors"
+            className="w-full bg-gold hover:bg-gold-dark text-dark rounded-xl py-4 px-6 flex flex-col items-center gap-0.5 shadow-md cursor-pointer transition-colors cta-glow-pulse"
           >
             <span className="font-black text-lg leading-tight">Schedule Pickup</span>
-            <span className="text-white/70 text-sm font-normal">50% Off First Order</span>
+            <span className="text-dark/60 text-sm font-normal">50% Off First Order</span>
           </motion.button>
         </motion.div>
 
@@ -197,9 +197,12 @@ function Hero() {
             </a>
           </div>
           {/* FIRST50 callout */}
-          <p className="text-[12px] font-bold text-center" style={{ color: "#FFC627" }}>
-            🎟 Use code <span style={{ fontWeight: 800 }}>FIRST50</span> at checkout — 50% off your first order
-          </p>
+          <div className="flex items-center gap-1.5 rounded-full px-4 py-1.5 bg-gold text-dark">
+            <Tag className="w-3 h-3 flex-none" aria-hidden />
+            <p className="text-[11px] font-bold">
+              Use code <strong className="font-black">FIRST50</strong> — 50% off first order
+            </p>
+          </div>
         </motion.div>
       </div>
     </section>
@@ -277,7 +280,7 @@ function Pricing() {
       featured: true,
       link: STRIPE_LINKS.medium,
       buttonLabel: "Book Medium Bag",
-      buttonIcon: "⚡",
+      buttonIcon: "→",
       buttonClass: "bg-gold hover:bg-gold-dark text-dark",
     },
     {
@@ -352,9 +355,9 @@ function Pricing() {
                   </div>
 
                   {/* FIRST50 pill */}
-                  <div style={{ border: "2px dashed #FFC627", borderRadius: "6px", padding: "4px 10px", textAlign: "center", background: "transparent" }}>
-                    <span style={{ color: "#FFC627", fontSize: "12px", fontWeight: 700 }}>
-                      Use code: <strong style={{ fontWeight: 800 }}>FIRST50</strong> for 50% off →
+                  <div className="rounded-md py-1 px-3 text-center bg-gold">
+                    <span className="text-[12px] font-bold text-dark">
+                      Use code: <strong className="font-black">FIRST50</strong> for 50% off →
                     </span>
                   </div>
 
@@ -425,7 +428,7 @@ function SocialProof() {
           {videos.map((v, i) => (
             <FadeUp key={i} delay={i * 0.1}>
               <motion.div
-                whileHover={reduceMotion ? {} : { scale: 1.03, transition: { duration: 0.18 } }}
+                whileHover={reduceMotion ? {} : { opacity: 0.82, transition: { duration: 0.18 } }}
                 className="flex-none w-36 aspect-[9/16] bg-gray-900 rounded-xl relative overflow-hidden snap-center shadow-lg cursor-pointer"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
