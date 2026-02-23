@@ -1,19 +1,17 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useSpring,
-  useTransform,
   useReducedMotion,
 } from "framer-motion";
 import {
   Phone,
   MessageCircle,
-  Check,
   Play,
   ChevronDown,
   Package,
@@ -21,7 +19,7 @@ import {
   Clock,
   ShieldCheck,
   Star,
-  MapPin,
+  Lock,
 } from "lucide-react";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
@@ -35,18 +33,18 @@ const PHONE_TEL     = "tel:+14809459939";
 const PHONE_SMS     = "sms:+14809459939";
 const PHONE_DISPLAY = "(480) 945-9939";
 
-const faqs = [
+const faqs: { q: string; a: React.ReactNode }[] = [
   {
     q: "Do you pick up from dorms?",
     a: "Yes — any dorm, apartment, or complex near ASU. Just leave your bag outside your door. No need to be home.",
   },
   {
-    q: "What's the turnaround time?",
-    a: "48 hours standard. Drop off Monday, back Wednesday. You'll get a confirmation after booking.",
+    q: "How do I pay?",
+    a: <>Securely online via Stripe — Apple Pay, Google Pay, Visa, and Mastercard all accepted. First order? Use code <strong style={{ color: "#FFC627", fontWeight: 800 }}>FIRST50</strong> at checkout for 50% off.</>,
   },
   {
-    q: "How do I pay?",
-    a: "Securely online via Stripe — Apple Pay, Google Pay, Visa, and Mastercard all accepted. First order? Use code FIRST50 at checkout for 50% off.",
+    q: "What's the turnaround time?",
+    a: "48 hours standard. Drop off Monday, back Wednesday. You'll get a confirmation after booking.",
   },
   {
     q: "Which bag size should I pick?",
@@ -78,14 +76,12 @@ function FadeUp({
   className?: string;
 }) {
   const reduceMotion = useReducedMotion();
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  if (reduceMotion) return <div className={className}>{children}</div>;
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.55, ease: "easeOut", delay }}
+      transition={{ duration: 0.52, ease: "easeOut", delay }}
       viewport={{ once: true, margin: "-80px" }}
       className={className}
     >
@@ -107,140 +103,103 @@ function ScrollProgressBar() {
   );
 }
 
-// ── Header (floating) ─────────────────────────────────────────────────────────
+// ── Header ────────────────────────────────────────────────────────────────────
 function Header() {
-  const [scrolled, setScrolled] = useState(false);
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
-  }, []);
-
   return (
-    <div className="fixed top-4 inset-x-4 z-40">
-      <div className="max-w-6xl mx-auto">
-        <header
-          className={`bg-maroon rounded-2xl px-5 py-3.5 transition-shadow duration-300 ${
-            scrolled ? "shadow-2xl" : "shadow-lg"
-          }`}
-        >
-          <div className="flex items-center justify-center gap-2.5">
-            <Image
-              src="/logo.png"
-              alt="AZ Laundry Service"
-              width={28}
-              height={28}
-              className="object-contain brightness-0 invert"
-              priority
-            />
-            <span className="text-white font-black text-sm tracking-tight uppercase">
-              AZ Laundry Service
-            </span>
-          </div>
-        </header>
+    <header className="fixed top-0 left-0 right-0 z-40 bg-maroon px-5 py-2">
+      <div className="max-w-6xl mx-auto flex items-center justify-center">
+          <Image
+            src="/logo-full.png"
+            alt="AZ Laundry Service"
+            width={120}
+            height={80}
+            className="object-contain"
+            priority
+          />
       </div>
-    </div>
+    </header>
   );
 }
 
 // ── Hero ──────────────────────────────────────────────────────────────────────
 function Hero() {
   const reduceMotion = useReducedMotion();
-  const [isDesktop, setIsDesktop] = useState(false);
-  const heroRef = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    setIsDesktop(window.innerWidth >= 768);
-  }, []);
-
-  const { scrollYProgress: heroScroll } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const bgY = useTransform(heroScroll, [0, 1], ["0%", "30%"]);
 
   return (
-    <section
-      ref={heroRef}
-      className="relative bg-maroon overflow-hidden px-5 pt-36 pb-24 text-center"
-    >
-      {/* Parallax decorative element — desktop only, creates depth */}
-      <motion.div
-        className="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 rounded-full bg-[#5C132A]/40 hidden md:block pointer-events-none"
-        style={!reduceMotion && isDesktop ? { y: bgY, willChange: "transform" } : {}}
-        aria-hidden
-      />
-      <motion.div
-        className="absolute -bottom-1/3 -left-1/4 w-2/3 h-2/3 rounded-full bg-[#5C132A]/25 hidden md:block pointer-events-none"
-        style={!reduceMotion && isDesktop ? { y: bgY, willChange: "transform" } : {}}
-        aria-hidden
-      />
-
-      <div className="relative max-w-xl mx-auto flex flex-col items-center gap-8">
+    <section className="bg-white px-5 pt-36 pb-16 text-center border-b border-gray-100">
+      <div className="max-w-sm mx-auto md:max-w-3xl flex flex-col items-center gap-6">
         {/* Headline */}
         <motion.h1
-          initial={reduceMotion ? false : { opacity: 0, y: 40 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 36 }}
           animate={reduceMotion ? false : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
-          className="text-[clamp(2.25rem,9vw,3.75rem)] font-extrabold text-white leading-[1.2] tracking-tight"
+          transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
+          className="text-[clamp(2.25rem,7vw,3rem)] md:text-[2.75rem] font-extrabold leading-[1.1] tracking-tight md:whitespace-nowrap"
         >
-          Laundry Done.
-          <br />
-          <span className="text-gold">Life Lived.</span>
+          <span className="text-dark">Laundry Sucks. </span>
+          <span className="text-maroon">We Do It For You.</span>
         </motion.h1>
 
         {/* Subheadline */}
         <motion.p
-          initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={reduceMotion ? false : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-          className="text-white/80 text-xl font-semibold leading-relaxed max-w-sm mx-auto"
+          transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 }}
+          className="text-[#777777] text-base font-normal leading-relaxed"
         >
-          Pickup &amp; delivery for ASU students.
+          Pickup &amp; delivery for ASU students
           <br />
-          Starting at $15/bag.
+          starting at $15/bag
         </motion.p>
 
         {/* CTA Button */}
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 30 }}
+          initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={reduceMotion ? false : { opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.5 }}
-          className="w-full max-w-sm"
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.38 }}
+          className="w-full"
         >
           <motion.button
             onClick={scrollToPricing}
-            whileHover={reduceMotion ? {} : { scale: 1.03 }}
-            whileTap={reduceMotion ? {} : { scale: 0.95 }}
-            transition={{ duration: 0.15, ease: "easeOut" }}
-            className="cta-glow-pulse w-full bg-gold hover:bg-gold-dark text-dark font-black text-lg rounded-xl py-4 min-h-[44px] shadow-lg cursor-pointer"
+            whileHover={reduceMotion ? {} : { scale: 1.02 }}
+            whileTap={reduceMotion ? {} : { scale: 0.96 }}
+            transition={{ duration: 0.15 }}
+            className="w-full bg-maroon hover:bg-maroon-dark text-white rounded-xl py-4 px-6 flex flex-col items-center gap-0.5 shadow-md cursor-pointer transition-colors"
           >
-            Schedule Pickup — 50% Off First Order →
+            <span className="font-black text-lg leading-tight">Schedule Pickup</span>
+            <span className="text-white/70 text-sm font-normal">50% Off First Order</span>
           </motion.button>
         </motion.div>
 
-        {/* Call / Text links */}
+        {/* Have Questions? */}
         <motion.div
           initial={reduceMotion ? false : { opacity: 0 }}
           animate={reduceMotion ? false : { opacity: 1 }}
-          transition={{ duration: 0.4, delay: 0.7 }}
-          className="flex flex-wrap items-center justify-center gap-5"
+          transition={{ duration: 0.4, delay: 0.56 }}
+          className="flex flex-col items-center gap-3"
         >
-          <a
-            href={PHONE_TEL}
-            className="flex items-center gap-2 text-white/90 hover:text-gold text-base font-semibold transition-colors cursor-pointer"
-          >
-            <Phone className="w-4 h-4 flex-none" aria-hidden />
-            <span>Call us: {PHONE_DISPLAY}</span>
-          </a>
-          <span className="text-white/30 hidden sm:block" aria-hidden>|</span>
-          <a
-            href={PHONE_SMS}
-            className="flex items-center gap-2 text-white/90 hover:text-gold text-base font-semibold transition-colors cursor-pointer"
-          >
-            <MessageCircle className="w-4 h-4 flex-none" aria-hidden />
-            <span>Text us: {PHONE_DISPLAY}</span>
-          </a>
+          <p className="text-[10px] font-bold text-[#AAAAAA] uppercase tracking-[0.18em]">
+            Have Questions?
+          </p>
+          <div className="flex gap-3">
+            <a
+              href={PHONE_TEL}
+              className="flex items-center gap-1.5 border border-gray-200 rounded-full px-5 py-2 text-sm font-semibold text-dark hover:border-maroon hover:text-maroon transition-colors cursor-pointer"
+            >
+              <Phone className="w-3.5 h-3.5 flex-none" aria-hidden />
+              Call
+            </a>
+            <a
+              href={PHONE_SMS}
+              className="flex items-center gap-1.5 border border-gray-200 rounded-full px-5 py-2 text-sm font-semibold text-dark hover:border-maroon hover:text-maroon transition-colors cursor-pointer"
+            >
+              <MessageCircle className="w-3.5 h-3.5 flex-none" aria-hidden />
+              Text
+            </a>
+          </div>
+          {/* FIRST50 callout */}
+          <p className="text-[12px] font-bold text-center" style={{ color: "#FFC627" }}>
+            🎟 Use code <span style={{ fontWeight: 800 }}>FIRST50</span> at checkout — 50% off your first order
+          </p>
         </motion.div>
       </div>
     </section>
@@ -249,59 +208,43 @@ function Hero() {
 
 // ── How It Works ──────────────────────────────────────────────────────────────
 function HowItWorks() {
-  const reduceMotion = useReducedMotion();
   const steps = [
     {
       Icon: Package,
       title: "Pick your bag size",
-      body: "Small $15, Medium $30, or Large $45. Stuff it full.",
+      body: "Choose between Small, Medium, or Large. Stuff it full.",
     },
     {
       Icon: DoorOpen,
-      title: "Leave it at your door",
-      body: "No need to be home. We grab it.",
+      title: "We pick up",
+      body: "We grab it directly from your dorm or apartment door.",
     },
     {
       Icon: Clock,
-      title: "Back in 48 hours",
-      body: "Clean, folded, delivered back to your door.",
+      title: "Delivered clean in 48hrs",
+      body: "Folded, fresh, and back at your door in 2 days.",
     },
   ];
 
   return (
-    <section className="bg-white px-5 py-20">
+    <section className="bg-white px-5 py-16">
       <div className="max-w-xl mx-auto">
         <FadeUp>
-          <h2 className="text-[clamp(1.625rem,5vw,2rem)] font-bold text-dark mb-8 leading-[1.2]">
+          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-6 leading-[1.2]">
             How It Works
           </h2>
         </FadeUp>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-3">
           {steps.map((step, i) => (
-            <FadeUp key={i} delay={i * 0.15}>
-              <div className="flex items-start gap-5 p-5 rounded-xl border border-gray-100 shadow-sm bg-white">
-                <div className="flex-none w-11 h-11 rounded-full bg-gold/20 flex items-center justify-center">
-                  <motion.div
-                    initial={reduceMotion ? undefined : { scale: 0.5 }}
-                    whileInView={reduceMotion ? undefined : { scale: 1 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                    viewport={{ once: true }}
-                  >
-                    <step.Icon className="w-5 h-5 text-maroon" aria-hidden />
-                  </motion.div>
+            <FadeUp key={i} delay={i * 0.12}>
+              <div className="flex items-start gap-4 p-5 rounded-xl border border-gray-100 shadow-sm bg-white">
+                {/* Number circle */}
+                <div className="flex-none w-10 h-10 rounded-full bg-maroon flex items-center justify-center shadow-sm">
+                  <span className="text-white font-black text-base leading-none">{i + 1}</span>
                 </div>
-                <div className="flex flex-col gap-1.5">
-                  <div className="flex items-center gap-2.5">
-                    <span className="text-maroon font-black text-xl leading-none">
-                      {i + 1}
-                    </span>
-                    <h3 className="font-bold text-dark text-base leading-snug">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <p className="text-[#666666] text-base font-normal leading-relaxed">
-                    {step.body}
-                  </p>
+                <div className="flex flex-col gap-1 pt-0.5">
+                  <h3 className="font-bold text-dark text-[15px] leading-snug">{step.title}</h3>
+                  <p className="text-[#777777] text-sm font-normal leading-relaxed">{step.body}</p>
                 </div>
               </div>
             </FadeUp>
@@ -315,138 +258,118 @@ function HowItWorks() {
 // ── Pricing ───────────────────────────────────────────────────────────────────
 function Pricing() {
   const reduceMotion = useReducedMotion();
+
   const bags = [
     {
       name: "Small Bag",
-      weight: "~10 lbs",
+      description: "~1 load of laundry",
       price: "$15",
-      badge: "50% OFF FIRST ORDER",
-      badgeStyle: "bg-gold text-dark",
       featured: false,
-      features: ["Up to 10 lbs", "Free delivery", "No commitment"],
       link: STRIPE_LINKS.small,
+      buttonLabel: "Book Small Bag",
+      buttonIcon: "→",
+      buttonClass: "bg-[#1C1C1C] hover:bg-[#2e2e2e] text-white",
     },
     {
       name: "Medium Bag",
-      weight: "~20 lbs",
+      description: "~2–3 loads. Perfect for weekly.",
       price: "$30",
-      badge: "MOST POPULAR",
-      badgeStyle: "bg-maroon text-white",
       featured: true,
-      features: ["Up to 20 lbs", "Free delivery", "No commitment"],
       link: STRIPE_LINKS.medium,
+      buttonLabel: "Book Medium Bag",
+      buttonIcon: "⚡",
+      buttonClass: "bg-gold hover:bg-gold-dark text-dark",
     },
     {
       name: "Large Bag",
-      weight: "~30 lbs",
+      description: "~4+ loads. Heavy duty.",
       price: "$45",
-      badge: null,
-      badgeStyle: "",
       featured: false,
-      features: ["Up to 30 lbs", "Free delivery", "No commitment"],
       link: STRIPE_LINKS.large,
+      buttonLabel: "Book Large Bag",
+      buttonIcon: "→",
+      buttonClass: "bg-[#1C1C1C] hover:bg-[#2e2e2e] text-white",
     },
   ];
 
   return (
-    <section id="pricing" className="bg-off-white px-5 py-20 scroll-mt-20">
-      <div className="max-w-5xl mx-auto">
+    <section id="pricing" className="bg-off-white px-5 py-16 scroll-mt-14 border-t border-gray-100">
+      <div className="max-w-xl mx-auto">
         <FadeUp>
-          <h2 className="text-[clamp(1.625rem,5vw,2rem)] font-bold text-dark mb-1 leading-[1.2]">
-            Simple, Flat Pricing
+          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-1 leading-[1.2]">
+            Select a Bag
           </h2>
-          <p className="text-[#666666] text-base font-normal leading-relaxed mb-10">
-            No contracts. No commitments. 50% off your first order.
+          <p className="text-[#777777] text-sm font-normal mb-8">
+            Instant booking via Stripe.
           </p>
         </FadeUp>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+        <div className="flex flex-col gap-4">
           {bags.map((bag, i) => (
-            <FadeUp key={bag.name} delay={i * 0.1} className="flex flex-col">
+            <FadeUp key={bag.name} delay={i * 0.1}>
               <motion.div
-                whileHover={reduceMotion ? {} : { y: -8, transition: { duration: 0.2 } }}
-                className={`relative rounded-[12px] overflow-hidden flex flex-col flex-grow cursor-pointer transition-shadow duration-300 ${
+                whileHover={reduceMotion ? {} : { y: -3, transition: { duration: 0.18 } }}
+                className={`relative rounded-2xl overflow-hidden bg-white transition-shadow duration-300 ${
                   bag.featured
-                    ? "border-2 border-maroon gold-pulse-card"
-                    : "border border-gray-200 bg-white shadow-[0_4px_24px_rgba(0,0,0,0.08)] hover:shadow-[0_12px_32px_rgba(0,0,0,0.13)]"
+                    ? "border-2 border-gold shadow-[0_4px_28px_rgba(255,198,39,0.22)] gold-pulse-card"
+                    : "border border-gray-200 shadow-sm hover:shadow-md"
                 }`}
               >
-                {/* Top banner (or invisible spacer for equal height) */}
-                {bag.featured ? (
-                  <div className="bg-maroon text-white text-xs font-semibold text-center py-2.5 tracking-widest uppercase">
-                    ⭐ Most Popular
-                  </div>
-                ) : (
-                  <div className="py-2.5 opacity-0 select-none text-xs" aria-hidden>
-                    &nbsp;
+                {/* Most Popular banner */}
+                {bag.featured && (
+                  <div className="bg-gold text-dark text-[10px] font-black text-center py-2 tracking-[0.2em] uppercase">
+                    Most Popular Choice
                   </div>
                 )}
 
-                <div className="p-8 flex flex-col gap-5 flex-grow bg-white">
-                  {/* Badge */}
-                  {bag.badge && !bag.featured && (
-                    <span
-                      className={`inline-block self-start text-[11px] font-semibold px-3 py-1 rounded-full uppercase tracking-wider ${bag.badgeStyle}`}
-                    >
-                      {bag.badge}
-                    </span>
-                  )}
-
-                  {/* Name + Price */}
-                  <div className="flex items-start justify-between gap-2">
+                <div className="p-5 flex flex-col gap-4">
+                  {/* Name + Price row */}
+                  <div className="flex items-center justify-between gap-3">
                     <div>
                       <h3
-                        className={`text-xl font-bold leading-tight ${
+                        className={`text-[17px] font-bold leading-tight ${
                           bag.featured ? "text-maroon" : "text-dark"
                         }`}
                       >
                         {bag.name}
                       </h3>
                       <p className="text-[#999999] text-sm font-normal mt-0.5">
-                        {bag.weight}
+                        {bag.description}
                       </p>
                     </div>
                     <div className="text-right flex-none">
                       <span
-                        className={`text-3xl font-bold ${
+                        className={`text-3xl font-black leading-none ${
                           bag.featured ? "text-maroon" : "text-dark"
                         }`}
                       >
                         {bag.price}
                       </span>
-                      <p className="text-[#999999] text-[11px] font-semibold uppercase tracking-wide">
-                        / pickup
+                      <p className="text-[#AAAAAA] text-[9px] font-bold uppercase tracking-[0.15em] mt-0.5">
+                        Flat Rate
                       </p>
                     </div>
                   </div>
 
-                  {/* Features */}
-                  <ul className="flex flex-col gap-3 flex-grow">
-                    {bag.features.map((f) => (
-                      <li
-                        key={f}
-                        className="flex items-center gap-2.5 text-base font-normal text-[#666666] leading-relaxed"
-                      >
-                        <Check className="w-4 h-4 text-gold flex-none" aria-hidden />
-                        {f}
-                      </li>
-                    ))}
-                  </ul>
+                  {/* FIRST50 pill */}
+                  <div style={{ border: "2px dashed #FFC627", borderRadius: "6px", padding: "4px 10px", textAlign: "center", background: "transparent" }}>
+                    <span style={{ color: "#FFC627", fontSize: "12px", fontWeight: 700 }}>
+                      Use code: <strong style={{ fontWeight: 800 }}>FIRST50</strong> for 50% off →
+                    </span>
+                  </div>
 
                   {/* CTA */}
                   <motion.a
                     href={bag.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={reduceMotion ? {} : { scale: 1.04 }}
-                    whileTap={reduceMotion ? {} : { scale: 0.96 }}
-                    transition={{ duration: 0.15, ease: "easeOut" }}
-                    className="group mt-auto w-full flex items-center justify-center gap-1.5 bg-gold hover:bg-gold-dark text-dark font-black text-base rounded-xl h-12 shadow-sm cursor-pointer transition-colors"
+                    whileHover={reduceMotion ? {} : { scale: 1.02 }}
+                    whileTap={reduceMotion ? {} : { scale: 0.97 }}
+                    transition={{ duration: 0.15 }}
+                    className={`w-full flex items-center justify-center gap-2 font-black text-[15px] rounded-xl h-12 cursor-pointer transition-colors ${bag.buttonClass}`}
                   >
-                    <span>Order Now</span>
-                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1">
-                      →
-                    </span>
+                    {bag.buttonLabel}{" "}
+                    <span className="ml-0.5">{bag.buttonIcon}</span>
                   </motion.a>
                 </div>
               </motion.div>
@@ -454,22 +377,16 @@ function Pricing() {
           ))}
         </div>
 
-        {/* Sizing note */}
-        <FadeUp delay={0.3}>
-          <div className="mt-10 text-center space-y-2">
-            <p className="text-base text-[#666666] font-normal leading-relaxed max-w-2xl mx-auto">
-              Not sure which size? A typical hamper = about 15–20 lbs. When in doubt, go Medium.
-            </p>
-            <p className="text-base font-semibold text-dark">
-              Questions?{" "}
-              <a
-                href={PHONE_TEL}
-                className="text-maroon hover:underline cursor-pointer inline-flex items-center gap-1.5"
-              >
-                <Phone className="w-4 h-4 flex-none" aria-hidden />
-                Call or text us: {PHONE_DISPLAY}
-              </a>
-            </p>
+        {/* Sizing hint */}
+        <FadeUp delay={0.32}>
+          <div className="mt-8 text-center">
+            <p className="text-sm text-[#777777] mb-1">Questions? Call or text us:</p>
+            <a
+              href={PHONE_TEL}
+              className="text-maroon font-black text-lg hover:underline cursor-pointer"
+            >
+              {PHONE_DISPLAY}
+            </a>
           </div>
         </FadeUp>
       </div>
@@ -481,25 +398,24 @@ function Pricing() {
 function SocialProof() {
   const reduceMotion = useReducedMotion();
   const videos = [
-    { caption: "Dorm life hack" },
+    { caption: "Dorm life hack 🧺" },
     { caption: "No more laundry room" },
     { caption: "Exam week lifesaver" },
   ];
   const trustBadges = [
-    { Icon: ShieldCheck, label: "Licensed & Insured" },
-    { Icon: Star,        label: "Professional" },
-    { Icon: Clock,       label: "48-Hr Turnaround" },
-    { Icon: MapPin,      label: "Tempe, AZ" },
+    { Icon: ShieldCheck, label: "Insured" },
+    { Icon: Lock,        label: "Secure" },
+    { Icon: Star,        label: "5.0 Stars" },
   ];
 
   return (
-    <section className="bg-white px-5 py-20">
+    <section className="bg-white px-5 py-16 border-t border-gray-100">
       <div className="max-w-xl mx-auto">
         <FadeUp>
-          <h2 className="text-[clamp(1.625rem,5vw,2rem)] font-bold text-dark mb-1 leading-[1.2]">
-            What Students Are Saying
+          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-1 leading-[1.2]">
+            Students Love Us
           </h2>
-          <p className="text-[#666666] text-base font-normal leading-relaxed mb-8">
+          <p className="text-[#777777] text-sm font-normal mb-8">
             See why ASU students are ditching the laundromat.
           </p>
         </FadeUp>
@@ -507,24 +423,16 @@ function SocialProof() {
         {/* TikTok-style cards */}
         <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory scrollbar-hide">
           {videos.map((v, i) => (
-            <FadeUp key={i} delay={i * 0.12}>
+            <FadeUp key={i} delay={i * 0.1}>
               <motion.div
-                whileHover={reduceMotion ? {} : { scale: 1.03, transition: { duration: 0.2 } }}
+                whileHover={reduceMotion ? {} : { scale: 1.03, transition: { duration: 0.18 } }}
                 className="flex-none w-36 aspect-[9/16] bg-gray-900 rounded-xl relative overflow-hidden snap-center shadow-lg cursor-pointer"
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <motion.div
-                    initial={{ opacity: 0.7 }}
-                    whileHover={reduceMotion ? {} : { opacity: 1 }}
-                    className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm"
-                  >
-                    <Play
-                      className="w-6 h-6 text-white ml-0.5"
-                      aria-label="Play video"
-                      fill="white"
-                    />
-                  </motion.div>
+                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
+                    <Play className="w-6 h-6 text-white ml-0.5" aria-label="Play video" fill="white" />
+                  </div>
                 </div>
                 <div className="absolute bottom-3 left-3 z-10">
                   <p className="text-white text-[10px] font-semibold opacity-80 mb-0.5">
@@ -537,16 +445,14 @@ function SocialProof() {
           ))}
         </div>
 
-        {/* Trust badge strip */}
+        {/* Trust badges */}
         <FadeUp delay={0.2}>
           <div className="mt-8 pt-6 border-t border-gray-100">
-            <div className="shimmer-strip flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
+            <div className="shimmer-strip flex items-center justify-center gap-8">
               {trustBadges.map(({ Icon, label }) => (
                 <div key={label} className="flex items-center gap-1.5 text-[#666666]">
                   <Icon className="w-4 h-4 text-maroon flex-none" aria-hidden />
-                  <span className="text-xs font-semibold uppercase tracking-widest">
-                    {label}
-                  </span>
+                  <span className="text-xs font-bold uppercase tracking-[0.12em]">{label}</span>
                 </div>
               ))}
             </div>
@@ -563,42 +469,33 @@ function FAQ() {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="bg-off-white px-5 py-20">
+    <section className="bg-off-white px-5 py-16 border-t border-gray-100">
       <div className="max-w-xl mx-auto">
         <FadeUp>
-          <h2 className="text-[clamp(1.625rem,5vw,2rem)] font-bold text-dark mb-8 leading-[1.2]">
+          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-8 leading-[1.2]">
             Quick Answers
           </h2>
         </FadeUp>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-2">
           {faqs.map((faq, i) => {
             const isOpen = openIndex === i;
             return (
-              <FadeUp key={i} delay={i * 0.05}>
+              <FadeUp key={i} delay={i * 0.04}>
                 <div
-                  className={`relative bg-white rounded-xl shadow-sm overflow-hidden border transition-colors duration-200 ${
-                    isOpen ? "border-gold/50" : "border-gray-100"
+                  className={`bg-white rounded-xl border transition-colors duration-200 overflow-hidden ${
+                    isOpen ? "border-gold/60" : "border-gray-100"
                   }`}
                 >
-                  {/* Left accent bar */}
-                  <motion.div
-                    className="absolute left-0 top-0 bottom-0 w-[3px] bg-gold"
-                    initial={{ scaleY: 0 }}
-                    animate={{ scaleY: isOpen ? 1 : 0 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
-                    style={{ originY: 0 }}
-                    aria-hidden
-                  />
                   <button
                     className="w-full flex items-center justify-between gap-4 px-5 py-4 text-left cursor-pointer"
                     onClick={() => setOpenIndex(isOpen ? null : i)}
                     aria-expanded={isOpen}
                   >
-                    <span className="font-bold text-base text-dark leading-snug">
+                    <span className="font-semibold text-[15px] text-dark leading-snug">
                       {faq.q}
                     </span>
                     <ChevronDown
-                      className={`flex-none w-5 h-5 text-[#666666] transition-transform duration-300 ${
+                      className={`flex-none w-5 h-5 text-[#AAAAAA] transition-transform duration-300 ${
                         isOpen ? "rotate-180" : ""
                       }`}
                       aria-hidden
@@ -611,10 +508,10 @@ function FAQ() {
                         initial={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
                         animate={reduceMotion ? { opacity: 1 } : { height: "auto", opacity: 1 }}
                         exit={reduceMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        transition={{ duration: 0.28, ease: "easeInOut" }}
                         className="overflow-hidden"
                       >
-                        <p className="px-5 pb-5 text-base text-[#666666] font-normal leading-relaxed max-w-2xl">
+                        <p className="px-5 pb-5 text-sm text-[#666666] font-normal leading-relaxed">
                           {faq.a}
                         </p>
                       </motion.div>
@@ -633,52 +530,63 @@ function FAQ() {
 // ── Footer ────────────────────────────────────────────────────────────────────
 function Footer() {
   return (
-    <footer className="bg-footer text-white px-5 pt-14 pb-8">
-      <div className="max-w-xl mx-auto flex flex-col items-center gap-6 text-center">
-        {/* Logo + name */}
-        <div className="flex items-center gap-3">
-          <Image
-            src="/logo.png"
-            alt="AZ Laundry Service"
-            width={44}
-            height={44}
-            className="object-contain"
-          />
-          <span className="text-white font-black text-xl tracking-tight">
-            AZ Laundry Service
-          </span>
-        </div>
+    <footer className="bg-footer text-white px-5 pt-12 pb-8 border-t border-white/5">
+      <div className="max-w-xl mx-auto flex flex-col items-center gap-5 text-center">
+        {/* Logo */}
+        <Image
+          src="/logo-full.png"
+          alt="AZ Laundry Service"
+          width={240}
+          height={160}
+          className="object-contain"
+        />
 
-        {/* Phone — large + prominent */}
-        <div className="flex flex-col items-center gap-2">
-          <a
-            href={PHONE_TEL}
-            className="flex items-center gap-2.5 text-gold font-black text-3xl hover:underline cursor-pointer"
-          >
-            <Phone className="w-7 h-7 flex-none" aria-hidden />
-            {PHONE_DISPLAY}
-          </a>
-          <a
-            href={PHONE_SMS}
-            className="flex items-center gap-1.5 text-gray-400 hover:text-gold text-base font-semibold transition-colors cursor-pointer"
-          >
-            <MessageCircle className="w-4 h-4 flex-none" aria-hidden />
-            Text us
-          </a>
-        </div>
-
-        <p className="text-gray-400 text-base font-normal">
-          Tempe &amp; Scottsdale, AZ
+        {/* Tagline */}
+        <p className="text-gray-400 text-sm font-normal leading-relaxed max-w-[260px]">
+          Making student life easier, one load at a time. Proudly serving students in Tempe &amp; Scottsdale, AZ.
         </p>
 
-        <p className="text-sm text-gray-400 font-semibold">
-          @AZLaundryService on{" "}
-          <span className="text-white">Instagram</span> &amp;{" "}
-          <span className="text-white">TikTok</span>
-        </p>
+        {/* Social icons */}
+        <div className="flex gap-3">
+          {/* TikTok */}
+          <a
+            href="https://tiktok.com/@AZLaundryService"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="TikTok"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer"
+          >
+            <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24" aria-hidden>
+              <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z" />
+            </svg>
+          </a>
+          {/* Instagram */}
+          <a
+            href="https://instagram.com/AZLaundryService"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors cursor-pointer"
+          >
+            <svg className="w-4 h-4 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+            </svg>
+          </a>
+        </div>
 
-        <div className="w-full border-t border-white/10 pt-5 text-xs text-gray-500">
-          <p>© 2026 AZ Laundry Service. All rights reserved.</p>
+        {/* Divider + legal */}
+        <div className="w-full border-t border-white/10 pt-5 flex flex-col gap-2">
+          <p className="text-xs text-gray-500">© 2026 AZ Laundry Service. All rights reserved.</p>
+          <div className="flex items-center justify-center gap-5">
+            <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors cursor-pointer">
+              Privacy
+            </a>
+            <a href="#" className="text-xs text-gray-500 hover:text-white transition-colors cursor-pointer">
+              Terms
+            </a>
+          </div>
         </div>
       </div>
     </footer>
@@ -709,9 +617,9 @@ function StickyBottomCTA() {
           <motion.button
             onClick={scrollToPricing}
             whileTap={reduceMotion ? {} : { scale: 0.97 }}
-            className="w-full bg-gold hover:bg-gold-dark text-dark font-black text-base h-14 shadow-[0_-4px_12px_rgba(0,0,0,0.15)] tracking-tight cursor-pointer transition-colors"
+            className="w-full bg-gold hover:bg-gold-dark text-dark font-black text-sm h-14 shadow-[0_-4px_16px_rgba(0,0,0,0.18)] tracking-[0.1em] uppercase cursor-pointer transition-colors"
           >
-            50% Off Your First Pickup → Order Now
+            50% Off Your First Pickup →
           </motion.button>
         </motion.div>
       )}
