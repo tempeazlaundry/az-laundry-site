@@ -136,8 +136,8 @@ function Hero() {
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
           className="text-[clamp(2.25rem,7vw,3rem)] md:text-[2.75rem] font-extrabold leading-[1.1] tracking-tight md:whitespace-nowrap"
         >
-          <span className="text-dark">Laundry Sucks. </span>
-          <span className="text-maroon">We Do It For You.</span>
+          <span className="text-dark">2 Minutes of Effort. </span>
+          <span className="text-maroon">Clean Clothes All Week.</span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -147,9 +147,9 @@ function Hero() {
           transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 }}
           className="text-[#777777] text-base font-normal leading-relaxed"
         >
-          Pickup &amp; delivery for ASU students
+          Order in 60 seconds. Set your bag by the door.
           <br />
-          starting at $15/bag
+          We pick up, wash, fold &amp; deliver back within 48 hours.
         </motion.p>
 
         {/* CTA Button */}
