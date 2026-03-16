@@ -20,15 +20,10 @@ import {
   ShieldCheck,
   Star,
   Lock,
-  Tag,
+
 } from "lucide-react";
 
 // ── Constants ─────────────────────────────────────────────────────────────────
-const STRIPE_LINKS = {
-  small:  "https://buy.stripe.com/9B6aEQ9Pj3mzfUKere6Vq01",
-  medium: "https://buy.stripe.com/dRm8wIgdH9KXdMC2Iw6Vq02",
-  large:  "https://buy.stripe.com/aFacMY3qVaP1fUKere6Vq03",
-};
 
 const PHONE_TEL     = "tel:+14809459939";
 const PHONE_SMS     = "sms:+14809459939";
@@ -41,7 +36,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "How do I pay?",
-    a: <>Securely online via Stripe — Apple Pay, Google Pay, Visa, and Mastercard all accepted. First order? Use code <strong style={{ color: "#FFC627", fontWeight: 800 }}>FIRST50</strong> at checkout for 50% off.</>,
+    a: "Securely online by clicking Place an Order. Your order will be fulfilled by our Corporate Division GinnysLaundry.com.",
   },
   {
     q: "What's the turnaround time?",
@@ -136,21 +131,20 @@ function Hero() {
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
           className="text-[clamp(2.25rem,7vw,3rem)] md:text-[2.75rem] font-extrabold leading-[1.1] tracking-tight md:whitespace-nowrap"
         >
-          <span className="text-dark">2 Minutes of Effort. </span>
-          <span className="text-maroon">Clean Clothes All Week.</span>
+          <span className="text-maroon">2 Minute Laundry Service</span>
         </motion.h1>
 
         {/* Subheadline */}
-        <motion.p
+        <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 20 }}
           animate={reduceMotion ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 }}
           className="text-[#777777] text-base font-normal leading-relaxed"
         >
-          Order in 60 seconds. Set your bag by the door.
-          <br />
-          We pick up, wash, fold &amp; deliver back within 48 hours.
-        </motion.p>
+          <p className="font-semibold text-dark mb-2">1 Minute to schedule Pickup</p>
+          <p className="font-semibold text-dark mb-2">1 Minute to set your bag by your door.</p>
+          <p>We pick up, wash, fold &amp; deliver back within 48 hours.</p>
+        </motion.div>
 
         {/* CTA Button */}
         <motion.div
@@ -166,7 +160,6 @@ function Hero() {
             className="w-full bg-gold hover:bg-gold-dark text-dark rounded-xl py-4 px-6 flex flex-col items-center gap-0.5 shadow-md cursor-pointer transition-colors cta-glow-pulse"
           >
             <span className="font-black text-lg leading-tight">Schedule Pickup</span>
-            <span className="text-dark/60 text-sm font-normal">50% Off First Order</span>
           </motion.button>
         </motion.div>
 
@@ -196,13 +189,6 @@ function Hero() {
               Text
             </a>
           </div>
-          {/* FIRST50 callout */}
-          <div className="flex items-center gap-1.5 rounded-full px-4 py-1.5 bg-gold text-dark">
-            <Tag className="w-3 h-3 flex-none" aria-hidden />
-            <p className="text-[11px] font-bold">
-              Use code <strong className="font-black">FIRST50</strong> — 50% off first order
-            </p>
-          </div>
         </motion.div>
       </div>
     </section>
@@ -214,18 +200,18 @@ function HowItWorks() {
   const steps = [
     {
       Icon: Package,
-      title: "Pick your bag size",
-      body: "Choose between Small, Medium, or Large. Stuff it full.",
+      title: "Place your laundry in a disposable trash bag and place it by your door",
+      body: "When we return your laundry we will provide you an AZ Laundry Bag for future orders.",
     },
     {
       Icon: DoorOpen,
       title: "We pick up",
-      body: "We grab it directly from your dorm or apartment door.",
+      body: "We grab it from your dorm, apartment or house door.",
     },
     {
       Icon: Clock,
-      title: "Delivered clean in 48hrs",
-      body: "Folded, fresh, and back at your door in 2 days.",
+      title: "Delivered clean in 2 days",
+      body: "Folded, fresh and back at your door in 2 days.",
     },
   ];
 
@@ -262,125 +248,44 @@ function HowItWorks() {
 function Pricing() {
   const reduceMotion = useReducedMotion();
 
-  const bags = [
-    {
-      name: "Small Bag",
-      description: "~1 load of laundry",
-      price: "$15",
-      featured: false,
-      link: STRIPE_LINKS.small,
-      buttonLabel: "Book Small Bag",
-      buttonIcon: "→",
-      buttonClass: "bg-[#1C1C1C] hover:bg-[#2e2e2e] text-white",
-    },
-    {
-      name: "Medium Bag",
-      description: "~2–3 loads. Perfect for weekly.",
-      price: "$30",
-      featured: true,
-      link: STRIPE_LINKS.medium,
-      buttonLabel: "Book Medium Bag",
-      buttonIcon: "→",
-      buttonClass: "bg-gold hover:bg-gold-dark text-dark",
-    },
-    {
-      name: "Large Bag",
-      description: "~4+ loads. Heavy duty.",
-      price: "$45",
-      featured: false,
-      link: STRIPE_LINKS.large,
-      buttonLabel: "Book Large Bag",
-      buttonIcon: "→",
-      buttonClass: "bg-[#1C1C1C] hover:bg-[#2e2e2e] text-white",
-    },
-  ];
-
   return (
     <section id="pricing" className="bg-off-white px-5 py-16 scroll-mt-14 border-t border-gray-100">
       <div className="max-w-xl mx-auto">
         <FadeUp>
           <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-1 leading-[1.2]">
-            Select a Bag
+            Pricing
           </h2>
           <p className="text-[#777777] text-sm font-normal mb-8">
-            Instant booking via Stripe.
+            Simple, transparent pricing.
           </p>
         </FadeUp>
 
-        <div className="flex flex-col gap-4">
-          {bags.map((bag, i) => (
-            <FadeUp key={bag.name} delay={i * 0.1}>
-              <motion.div
-                whileHover={reduceMotion ? {} : { y: -3, transition: { duration: 0.18 } }}
-                className={`relative rounded-2xl overflow-hidden bg-white transition-shadow duration-300 ${
-                  bag.featured
-                    ? "border-2 border-gold shadow-[0_4px_28px_rgba(255,198,39,0.22)] gold-pulse-card"
-                    : "border border-gray-200 shadow-sm hover:shadow-md"
-                }`}
+        <FadeUp delay={0.1}>
+          <div className="relative rounded-2xl overflow-hidden bg-white border-2 border-gold shadow-[0_4px_28px_rgba(255,198,39,0.22)]">
+            <div className="p-8 flex flex-col items-center gap-4 text-center">
+              <div>
+                <span className="text-4xl font-black text-maroon leading-none">$1.50</span>
+                <span className="text-lg font-bold text-dark ml-1">/ lb</span>
+              </div>
+              <p className="text-[#777777] text-sm font-normal">
+                Minimum charge $20
+              </p>
+              <motion.a
+                href="https://mylaundryorder.com/?s=1773232209146x732803473043145500&page=ZIP%20Check"
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={reduceMotion ? {} : { scale: 1.02 }}
+                whileTap={reduceMotion ? {} : { scale: 0.97 }}
+                transition={{ duration: 0.15 }}
+                className="w-full flex items-center justify-center gap-2 font-black text-[15px] rounded-xl h-12 cursor-pointer transition-colors bg-gold hover:bg-gold-dark text-dark"
               >
-                {/* Most Popular banner */}
-                {bag.featured && (
-                  <div className="bg-gold text-dark text-[10px] font-black text-center py-2 tracking-[0.2em] uppercase">
-                    Most Popular Choice
-                  </div>
-                )}
+                Schedule a Pickup <span className="ml-0.5">→</span>
+              </motion.a>
+            </div>
+          </div>
+        </FadeUp>
 
-                <div className="p-5 flex flex-col gap-4">
-                  {/* Name + Price row */}
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <h3
-                        className={`text-[17px] font-bold leading-tight ${
-                          bag.featured ? "text-maroon" : "text-dark"
-                        }`}
-                      >
-                        {bag.name}
-                      </h3>
-                      <p className="text-[#999999] text-sm font-normal mt-0.5">
-                        {bag.description}
-                      </p>
-                    </div>
-                    <div className="text-right flex-none">
-                      <span
-                        className={`text-3xl font-black leading-none ${
-                          bag.featured ? "text-maroon" : "text-dark"
-                        }`}
-                      >
-                        {bag.price}
-                      </span>
-                      <p className="text-[#AAAAAA] text-[9px] font-bold uppercase tracking-[0.15em] mt-0.5">
-                        Flat Rate
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* FIRST50 pill */}
-                  <div className="rounded-md py-1 px-3 text-center bg-gold">
-                    <span className="text-[12px] font-bold text-dark">
-                      Use code: <strong className="font-black">FIRST50</strong> for 50% off →
-                    </span>
-                  </div>
-
-                  {/* CTA */}
-                  <motion.a
-                    href={bag.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={reduceMotion ? {} : { scale: 1.02 }}
-                    whileTap={reduceMotion ? {} : { scale: 0.97 }}
-                    transition={{ duration: 0.15 }}
-                    className={`w-full flex items-center justify-center gap-2 font-black text-[15px] rounded-xl h-12 cursor-pointer transition-colors ${bag.buttonClass}`}
-                  >
-                    {bag.buttonLabel}{" "}
-                    <span className="ml-0.5">{bag.buttonIcon}</span>
-                  </motion.a>
-                </div>
-              </motion.div>
-            </FadeUp>
-          ))}
-        </div>
-
-        {/* Sizing hint */}
+        {/* Contact hint */}
         <FadeUp delay={0.32}>
           <div className="mt-8 text-center">
             <p className="text-sm text-[#777777] mb-1">Questions? Call or text us:</p>
@@ -622,7 +527,7 @@ function StickyBottomCTA() {
             whileTap={reduceMotion ? {} : { scale: 0.97 }}
             className="w-full bg-gold hover:bg-gold-dark text-dark font-black text-sm h-14 shadow-[0_-4px_16px_rgba(0,0,0,0.18)] tracking-[0.1em] uppercase cursor-pointer transition-colors"
           >
-            50% Off Your First Pickup →
+            Schedule a Pickup →
           </motion.button>
         </motion.div>
       )}
