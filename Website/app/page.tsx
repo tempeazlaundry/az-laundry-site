@@ -13,10 +13,6 @@ import {
   Phone,
   MessageCircle,
   ChevronDown,
-  Package,
-  CalendarCheck,
-  Truck,
-  Sparkles,
 } from "lucide-react";
 
 const PHONE_TEL     = "tel:+14809459939";
@@ -187,22 +183,19 @@ function Hero() {
 function HowItWorks() {
   const steps = [
     {
-      Icon: CalendarCheck,
+      image: "/schedule-pickup.webp",
       title: "Schedule a Pickup",
       body: "Pick a day and time that works for you. We'll come right to your door.",
-      bg: "bg-gradient-to-br from-maroon to-[#6b1530]",
     },
     {
-      Icon: Truck,
+      image: "/pickup-and-wash.webp",
       title: "We Pick Up & Wash",
       body: "Our team grabs your laundry, washes and folds everything with care at our facility.",
-      bg: "bg-gradient-to-br from-gold to-[#e6b020]",
     },
     {
-      Icon: Sparkles,
+      image: "/fresh-delivery.webp",
       title: "Fresh Delivery",
       body: "Clean, folded clothes delivered back to your door within 48 hours.",
-      bg: "bg-gradient-to-br from-maroon to-[#6b1530]",
     },
   ];
 
@@ -221,12 +214,16 @@ function HowItWorks() {
           {steps.map((step, i) => (
             <FadeUp key={i} delay={i * 0.12}>
               <div className="rounded-2xl overflow-hidden shadow-md border border-gray-100">
-                {/* Image-style branded block */}
-                <div className={`${step.bg} px-6 py-10 flex flex-col items-center gap-3 text-center`}>
-                  <div className="w-16 h-16 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                    <step.Icon className={`w-8 h-8 ${i === 1 ? "text-dark" : "text-white"}`} strokeWidth={2} />
-                  </div>
-                  <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm">
+                {/* Photo */}
+                <div className="relative">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    width={1200}
+                    height={509}
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md">
                     <span className="text-maroon font-black text-sm leading-none">{i + 1}</span>
                   </div>
                 </div>
@@ -251,11 +248,15 @@ function BagInfo() {
       <div className="max-w-xl mx-auto">
         <FadeUp>
           <div className="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
-            <div className="bg-gradient-to-r from-maroon to-[#6b1530] px-6 py-5 flex items-center gap-3">
-              <Package className="w-6 h-6 text-gold flex-none" />
-              <h2 className="text-white font-bold text-lg leading-snug">About Our Bags</h2>
-            </div>
+            <Image
+              src="/about-our-bags.webp"
+              alt="AZ Laundry branded maroon bag"
+              width={1200}
+              height={509}
+              className="w-full h-auto object-cover"
+            />
             <div className="px-6 py-6">
+              <h2 className="font-bold text-dark text-lg leading-snug mb-3">About Our Bags</h2>
               <p className="text-[#555555] text-sm font-normal leading-relaxed">
                 AZ Laundry bags will be brought to you with your first scheduled pickup.
                 If you&apos;re going to be present for your pickup, you can stuff them with
@@ -282,35 +283,23 @@ function DeliveryVan() {
       <div className="max-w-xl mx-auto">
         <FadeUp>
           <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-2 leading-[1.2]">
-            Look for Our Van
+            Our Delivery Van
           </h2>
           <p className="text-[#777777] text-sm font-normal mb-6">
-            You&apos;ll know us when you see us.
+            Serving Tempe &amp; Scottsdale daily.
           </p>
         </FadeUp>
         <FadeUp delay={0.1}>
           <div className="rounded-2xl overflow-hidden shadow-md border border-gray-100">
-            {/* Van illustration block */}
-            <div className="bg-gradient-to-br from-maroon via-[#7a1938] to-[#5a1028] px-6 py-14 flex flex-col items-center gap-5 text-center relative">
-              <div className="w-24 h-24 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
-                <Truck className="w-14 h-14 text-gold" strokeWidth={1.5} />
-              </div>
-              <div className="flex flex-col items-center gap-1">
-                <Image
-                  src="/logo-full.png"
-                  alt="AZ Laundry Service"
-                  width={140}
-                  height={93}
-                  className="object-contain brightness-0 invert"
-                />
-              </div>
-              <p className="text-white/70 text-xs font-semibold uppercase tracking-[0.2em]">
-                Pickup &amp; Delivery
-              </p>
-            </div>
+            <Image
+              src="/delivery-van.webp"
+              alt="AZ Laundry Service delivery van"
+              width={1200}
+              height={509}
+              className="w-full h-auto object-cover"
+            />
             <div className="bg-white px-5 py-5">
               <p className="text-[#777777] text-sm font-normal leading-relaxed">
-                Our branded AZ Laundry van serves the Tempe &amp; Scottsdale area daily.
                 Free pickup and delivery right to your door — no extra fees, ever.
               </p>
             </div>
