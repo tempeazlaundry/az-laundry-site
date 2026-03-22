@@ -13,11 +13,11 @@ const montserrat = Montserrat({
 export const metadata: Metadata = {
   title: "AZ Laundry Service | Laundry Pickup & Delivery for ASU Students",
   description:
-    "Wash-and-fold laundry pickup & delivery for ASU students in Tempe. $15/$30/$45 flat pricing. 50% off first order. Book online.",
+    "Wash-and-fold laundry pickup & delivery for ASU students in Tempe. $1.50/lb, $20 minimum. Free pickup & delivery. Book online.",
   openGraph: {
     title: "AZ Laundry Service | Laundry Pickup & Delivery for ASU Students",
     description:
-      "Wash-and-fold laundry pickup & delivery for ASU students in Tempe. $15/$30/$45 flat pricing. 50% off first order. Book online.",
+      "Wash-and-fold laundry pickup & delivery for ASU students in Tempe. $1.50/lb, $20 minimum. Free pickup & delivery. Book online.",
     type: "website",
     locale: "en_US",
     siteName: "AZ Laundry Service",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "AZ Laundry Service | Laundry Pickup & Delivery for ASU Students",
     description:
-      "Wash-and-fold laundry pickup & delivery for ASU students in Tempe. $15/$30/$45 flat pricing. 50% off first order. Book online.",
+      "Wash-and-fold laundry pickup & delivery for ASU students in Tempe. $1.50/lb, $20 minimum. Free pickup & delivery. Book online.",
   },
 };
 

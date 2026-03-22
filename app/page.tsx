@@ -12,18 +12,8 @@ import {
 import {
   Phone,
   MessageCircle,
-  Play,
   ChevronDown,
-  Package,
-  DoorOpen,
-  Clock,
-  ShieldCheck,
-  Star,
-  Lock,
-
 } from "lucide-react";
-
-// ── Constants ─────────────────────────────────────────────────────────────────
 
 const PHONE_TEL     = "tel:+14809459939";
 const PHONE_SMS     = "sms:+14809459939";
@@ -36,15 +26,11 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "How do I pay?",
-    a: "Securely online by clicking Place an Order. Your order will be fulfilled by our Corporate Division GinnysLaundry.com.",
+    a: "Securely online by clicking Schedule a Pickup. Your order will be fulfilled by our Corporate Division GinnysLaundry.com.",
   },
   {
     q: "What's the turnaround time?",
     a: "48 hours standard. Drop off Monday, back Wednesday. You'll get a confirmation after booking.",
-  },
-  {
-    q: "Which bag size should I pick?",
-    a: "A typical full hamper is about 15–20 lbs — most students go Medium. Not sure? Text us at (480) 945-9939 and we'll help.",
   },
   {
     q: "What happens to my clothes?",
@@ -129,9 +115,9 @@ function Hero() {
           initial={reduceMotion ? false : { opacity: 0, y: 36 }}
           animate={reduceMotion ? false : { opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut", delay: 0.08 }}
-          className="text-[clamp(2.25rem,7vw,3rem)] md:text-[2.75rem] font-extrabold leading-[1.1] tracking-tight md:whitespace-nowrap"
+          className="text-[clamp(1.75rem,6vw,2.5rem)] md:text-[2.5rem] font-extrabold leading-[1.15] tracking-tight"
         >
-          <span className="text-maroon">2 Minute Laundry Service</span>
+          <span className="text-maroon">Fresh, clean laundry delivered straight to your door.</span>
         </motion.h1>
 
         {/* Subheadline */}
@@ -141,9 +127,7 @@ function Hero() {
           transition={{ duration: 0.55, ease: "easeOut", delay: 0.25 }}
           className="text-[#777777] text-base font-normal leading-relaxed"
         >
-          <p className="font-semibold text-dark mb-2">1 Minute to schedule Pickup</p>
-          <p className="font-semibold text-dark mb-2">1 Minute to set your bag by your door.</p>
-          <p>We pick up, wash, fold &amp; deliver back within 48 hours.</p>
+          <p>Pickup &amp; delivery laundry service for ASU students. We wash, fold &amp; deliver back within 48 hours.</p>
         </motion.div>
 
         {/* CTA Button */}
@@ -199,19 +183,19 @@ function Hero() {
 function HowItWorks() {
   const steps = [
     {
-      Icon: Package,
-      title: "Place your laundry in a disposable trash bag and place it by your door",
-      body: "When we return your laundry we will provide you an AZ Laundry Bag for future orders.",
+      image: "/schedule-pickup.webp",
+      title: "Schedule a Pickup",
+      body: "Pick a day and time that works for you. We'll come right to your door.",
     },
     {
-      Icon: DoorOpen,
-      title: "We pick up",
-      body: "We grab it from your dorm, apartment or house door.",
+      image: "/pickup-and-wash.webp",
+      title: "We Pick Up & Wash",
+      body: "Our team grabs your laundry, washes and folds everything with care at our facility.",
     },
     {
-      Icon: Clock,
-      title: "Delivered clean in 2 days",
-      body: "Folded, fresh and back at your door in 2 days.",
+      image: "/fresh-delivery.webp",
+      title: "Fresh Delivery",
+      body: "Clean, folded clothes delivered back to your door within 48 hours.",
     },
   ];
 
@@ -219,20 +203,33 @@ function HowItWorks() {
     <section className="bg-white px-5 py-16">
       <div className="max-w-xl mx-auto">
         <FadeUp>
-          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-6 leading-[1.2]">
-            How It Works
+          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-2 leading-[1.2]">
+            How It All Works
           </h2>
+          <p className="text-[#777777] text-sm font-normal mb-8">
+            Three simple steps. That&apos;s it.
+          </p>
         </FadeUp>
-        <div className="flex flex-col gap-3">
+        <div className="flex flex-col gap-5">
           {steps.map((step, i) => (
             <FadeUp key={i} delay={i * 0.12}>
-              <div className="flex items-start gap-4 p-5 rounded-xl border border-gray-100 shadow-sm bg-white">
-                {/* Number circle */}
-                <div className="flex-none w-10 h-10 rounded-full bg-maroon flex items-center justify-center shadow-sm">
-                  <span className="text-white font-black text-base leading-none">{i + 1}</span>
+              <div className="rounded-2xl overflow-hidden shadow-md border border-gray-100">
+                {/* Photo */}
+                <div className="relative">
+                  <Image
+                    src={step.image}
+                    alt={step.title}
+                    width={1200}
+                    height={509}
+                    className="w-full h-auto object-cover"
+                  />
+                  <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-md">
+                    <span className="text-maroon font-black text-sm leading-none">{i + 1}</span>
+                  </div>
                 </div>
-                <div className="flex flex-col gap-1 pt-0.5">
-                  <h3 className="font-bold text-dark text-[15px] leading-snug">{step.title}</h3>
+                {/* Text content */}
+                <div className="bg-white px-5 py-5">
+                  <h3 className="font-bold text-dark text-base leading-snug mb-1">{step.title}</h3>
                   <p className="text-[#777777] text-sm font-normal leading-relaxed">{step.body}</p>
                 </div>
               </div>
@@ -243,6 +240,79 @@ function HowItWorks() {
     </section>
   );
 }
+
+// ── Bag Info ──────────────────────────────────────────────────────────────────
+function BagInfo() {
+  return (
+    <section className="bg-off-white px-5 py-16 border-t border-gray-100">
+      <div className="max-w-xl mx-auto">
+        <FadeUp>
+          <div className="rounded-2xl bg-white border border-gray-100 shadow-sm overflow-hidden">
+            <Image
+              src="/about-our-bags.webp"
+              alt="AZ Laundry branded maroon bag"
+              width={1200}
+              height={509}
+              className="w-full h-auto object-cover"
+            />
+            <div className="px-6 py-6">
+              <h2 className="font-bold text-dark text-lg leading-snug mb-3">About Our Bags</h2>
+              <p className="text-[#555555] text-sm font-normal leading-relaxed">
+                AZ Laundry bags will be brought to you with your first scheduled pickup.
+                If you&apos;re going to be present for your pickup, you can stuff them with
+                your laundry before handing them back to the driver. If you&apos;re not present
+                for your first pickup, you can leave your clothes in any type of bag or hamper.
+                We&apos;ll return these with your order along with AZ Laundry bags for next time.
+              </p>
+              <p className="text-[#555555] text-sm font-normal leading-relaxed mt-4">
+                When you&apos;re ready to schedule a pickup, hop onto our website or give us a
+                call to set up a time that works best for you.
+              </p>
+            </div>
+          </div>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+// ── Delivery Van ─────────────────────────────────────────────────────────────
+function DeliveryVan() {
+  return (
+    <section className="bg-white px-5 py-16 border-t border-gray-100">
+      <div className="max-w-xl mx-auto">
+        <FadeUp>
+          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-2 leading-[1.2]">
+            Our Delivery Van
+          </h2>
+          <p className="text-[#777777] text-sm font-normal mb-6">
+            Serving Tempe &amp; Scottsdale daily.
+          </p>
+        </FadeUp>
+        <FadeUp delay={0.1}>
+          <div className="rounded-2xl overflow-hidden shadow-md border border-gray-100">
+            <Image
+              src="/delivery-van.webp"
+              alt="AZ Laundry Service delivery van"
+              width={1200}
+              height={509}
+              className="w-full h-auto object-cover"
+            />
+            <div className="bg-white px-5 py-5">
+              <p className="text-[#777777] text-sm font-normal leading-relaxed">
+                Free pickup and delivery right to your door — no extra fees, ever.
+              </p>
+            </div>
+          </div>
+        </FadeUp>
+      </div>
+    </section>
+  );
+}
+
+// ── Gift Cards (temporarily removed from page) ──────────────────────────────
+// GiftCardPaymentForm and GiftCards components preserved for future use.
+// To re-enable, uncomment the components below and add <GiftCards /> back to Home.
 
 // ── Pricing ───────────────────────────────────────────────────────────────────
 function Pricing() {
@@ -302,74 +372,9 @@ function Pricing() {
   );
 }
 
-// ── Social Proof ──────────────────────────────────────────────────────────────
-function SocialProof() {
-  const reduceMotion = useReducedMotion();
-  const videos = [
-    { caption: "Dorm life hack 🧺" },
-    { caption: "No more laundry room" },
-    { caption: "Exam week lifesaver" },
-  ];
-  const trustBadges = [
-    { Icon: ShieldCheck, label: "Insured" },
-    { Icon: Lock,        label: "Secure" },
-    { Icon: Star,        label: "5.0 Stars" },
-  ];
-
-  return (
-    <section className="bg-white px-5 py-16 border-t border-gray-100">
-      <div className="max-w-xl mx-auto">
-        <FadeUp>
-          <h2 className="text-[clamp(1.5rem,5vw,1.875rem)] font-bold text-dark mb-1 leading-[1.2]">
-            Students Love Us
-          </h2>
-          <p className="text-[#777777] text-sm font-normal mb-8">
-            See why ASU students are ditching the laundromat.
-          </p>
-        </FadeUp>
-
-        {/* TikTok-style cards */}
-        <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 snap-x snap-mandatory scrollbar-hide">
-          {videos.map((v, i) => (
-            <FadeUp key={i} delay={i * 0.1}>
-              <motion.div
-                whileHover={reduceMotion ? {} : { opacity: 0.82, transition: { duration: 0.18 } }}
-                className="flex-none w-36 aspect-[9/16] bg-gray-900 rounded-xl relative overflow-hidden snap-center shadow-lg cursor-pointer"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                    <Play className="w-6 h-6 text-white ml-0.5" aria-label="Play video" fill="white" />
-                  </div>
-                </div>
-                <div className="absolute bottom-3 left-3 z-10">
-                  <p className="text-white text-[10px] font-semibold opacity-80 mb-0.5">
-                    @AZLaundryService
-                  </p>
-                  <p className="text-white text-[11px] font-bold leading-tight">{v.caption}</p>
-                </div>
-              </motion.div>
-            </FadeUp>
-          ))}
-        </div>
-
-        {/* Trust badges */}
-        <FadeUp delay={0.2}>
-          <div className="mt-8 pt-6 border-t border-gray-100">
-            <div className="shimmer-strip flex items-center justify-center gap-8">
-              {trustBadges.map(({ Icon, label }) => (
-                <div key={label} className="flex items-center gap-1.5 text-[#666666]">
-                  <Icon className="w-4 h-4 text-maroon flex-none" aria-hidden />
-                  <span className="text-xs font-bold uppercase tracking-[0.12em]">{label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </FadeUp>
-      </div>
-    </section>
-  );
-}
+// ── Social Proof (temporarily removed from page) ─────────────────────────────
+// SocialProof component preserved for future use.
+// To re-enable, uncomment the component below and add <SocialProof /> back to Home.
 
 // ── FAQ ───────────────────────────────────────────────────────────────────────
 function FAQ() {
@@ -544,8 +549,9 @@ export default function Home() {
       <main>
         <Hero />
         <HowItWorks />
+        <BagInfo />
+        <DeliveryVan />
         <Pricing />
-        <SocialProof />
         <FAQ />
       </main>
       <Footer />
