@@ -30,7 +30,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "What's the turnaround time?",
-    a: "48 hours standard. Drop off Monday, back Wednesday. You'll get a confirmation after booking.",
+    a: "48 hours standard. Pick up Monday, back Wednesday. You'll get a confirmation after booking.",
   },
   {
     q: "What happens to my clothes?",
