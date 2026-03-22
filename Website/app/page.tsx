@@ -26,7 +26,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "How do I pay?",
-    a: "Securely online by clicking Place an Order. Your order will be fulfilled by our Corporate Division GinnysLaundry.com.",
+    a: "Securely online by clicking Schedule a Pickup. Your order will be fulfilled by our Corporate Division GinnysLaundry.com.",
   },
   {
     q: "What's the turnaround time?",
