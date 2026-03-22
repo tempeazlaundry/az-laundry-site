@@ -34,7 +34,7 @@ const faqs: { q: string; a: React.ReactNode }[] = [
   },
   {
     q: "What happens to my clothes?",
-    a: "Professionally washed and folded at our facility. Have preferences like fragrance-free or cold wash? Add a note in Special Instructions at Stripe checkout.",
+    a: "Professionally washed and folded at our facility. Have preferences like fragrance-free or cold wash? Add a note in Special Instructions when you schedule your pickup.",
   },
   {
     q: "Is there a contract?",
