@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AZ Laundry Flyer — Do The Math</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @page { size: letter; margin: 0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: #333333;
+      background: #FFFFFF;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .page {
+      width: 8.5in;
+      height: 11in;
+      margin: 0 auto;
+      padding: 0.4in 0.55in 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      margin-bottom: 0.2in;
+    }
+    .logo-img {
+      height: 0.75in;
+      width: auto;
+    }
+
+    /* Headline */
+    .headline {
+      font-size: 56pt;
+      font-weight: 900;
+      color: #8C1D40;
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 0.25in;
+      letter-spacing: -1px;
+    }
+
+    /* Comparison Table */
+    .comparison {
+      display: flex;
+      gap: 0;
+      margin-bottom: 0.25in;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #ddd;
+    }
+    .col {
+      flex: 1;
+      padding: 0;
+    }
+    .col-header {
+      padding: 0.12in 0.15in;
+      font-size: 12pt;
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 1px;
+    }
+    .col-bad .col-header {
+      background: #E8E8E8;
+      color: #666;
+    }
+    .col-good .col-header {
+      background: #FFC627;
+      color: #333;
+    }
+    .col-row {
+      padding: 0.1in 0.18in;
+      font-size: 10.5pt;
+      line-height: 1.35;
+      border-bottom: 1px solid #eee;
+      min-height: 0.48in;
+      display: flex;
+      align-items: center;
+    }
+    .col-bad .col-row {
+      background: #F9F9F9;
+      color: #777;
+    }
+    .col-good .col-row {
+      background: #FFFDF5;
+      color: #333;
+      font-weight: 600;
+    }
+    .col-bad {
+      border-right: 2px solid #ddd;
+    }
+    .col-verdict {
+      text-align: center;
+      padding: 0.12in;
+      font-size: 28pt;
+    }
+    .col-bad .col-verdict {
+      background: #F2F2F2;
+      color: #CC3333;
+    }
+    .col-good .col-verdict {
+      background: #FFF8E1;
+      color: #228B22;
+    }
+
+    /* CTA */
+    .cta-main {
+      text-align: center;
+      margin-bottom: 0.2in;
+    }
+    .cta-sms {
+      font-size: 16pt;
+      font-weight: 900;
+      color: #FFFFFF;
+      background: #8C1D40;
+      display: inline-block;
+      padding: 0.1in 0.3in;
+      border-radius: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* QR Block */
+    .qr-block {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.2in;
+      margin-bottom: 0.15in;
+    }
+    .qr-code {
+      width: 1.1in;
+      height: 1.1in;
+      border-radius: 6px;
+    }
+    .qr-text {
+      font-size: 11pt;
+      color: #333;
+    }
+    .qr-text strong {
+      font-weight: 900;
+      color: #8C1D40;
+      font-size: 12pt;
+      display: block;
+      margin-bottom: 2px;
+    }
+    .qr-text .social {
+      font-size: 9pt;
+      color: #8C1D40;
+      font-weight: 700;
+      margin-top: 4px;
+    }
+
+    /* Bottom Note */
+    .bottom-note {
+      text-align: center;
+      font-size: 11pt;
+      font-weight: 700;
+      color: #333;
+      margin-bottom: 0.12in;
+    }
+
+    /* Tear-off Tabs */
+    .tear-off-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1.35in;
+      border-top: 2px dashed #999;
+      display: flex;
+    }
+    .tear-off-container::before {
+      content: "✂";
+      position: absolute;
+      top: -0.55em;
+      left: 0.3in;
+      font-size: 13pt;
+      color: #999;
+      background: white;
+      padding: 0 4px;
+    }
+    .tear-tab {
+      flex: 1;
+      border-right: 1px dashed #bbb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.06in 0.05in;
+      gap: 0.04in;
+    }
+    .tear-tab:last-child {
+      border-right: none;
+    }
+    .tear-tab-qr {
+      width: 0.55in;
+      height: 0.55in;
+      border-radius: 3px;
+    }
+    .tear-tab-info {
+      text-align: center;
+      line-height: 1.25;
+    }
+    .tear-tab-info .phone {
+      font-size: 7pt;
+      font-weight: 900;
+      color: #8C1D40;
+      display: block;
+    }
+    .tear-tab-info .url {
+      font-size: 6.5pt;
+      font-weight: 700;
+      color: #666;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <img src="./public/logo.png" alt="AZ Laundry" class="logo-img">
+    </div>
+
+    <!-- Headline -->
+    <div class="headline">DO THE MATH.</div>
+
+    <!-- Comparison Table -->
+    <div class="comparison">
+      <!-- Bad Column -->
+      <div class="col col-bad">
+        <div class="col-header">THE LAUNDROMAT</div>
+        <div class="col-row">2–3 hours of your Saturday</div>
+        <div class="col-row">$3–5 in quarters (who even has quarters?)</div>
+        <div class="col-row">Hauling bags across campus</div>
+        <div class="col-row">Someone else's lint on your clothes</div>
+        <div class="col-row">Sitting around waiting, doing nothing</div>
+        <div class="col-verdict">✗</div>
+      </div>
+      <!-- Good Column -->
+      <div class="col col-good">
+        <div class="col-header">AZ LAUNDRY</div>
+        <div class="col-row">2 minutes to schedule online</div>
+        <div class="col-row">$1.50/lb ($20 minimum)</div>
+        <div class="col-row">Free pickup &amp; delivery to your door</div>
+        <div class="col-row">Professionally washed &amp; folded</div>
+        <div class="col-row">Back in 48 hours — zero effort</div>
+        <div class="col-verdict">✓</div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-main">
+      <div class="cta-sms">Text "PICKUP" to (480) 945-9939</div>
+    </div>
+
+    <!-- QR Block -->
+    <div class="qr-block">
+      <img
+        src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https%3A%2F%2Fazlaundry.com"
+        alt="Scan to visit azlaundry.com"
+        class="qr-code"
+      >
+      <div class="qr-text">
+        <strong>Or scan to order online</strong>
+        azlaundry.com
+        <div class="social">@azlaundryservice on Instagram</div>
+      </div>
+    </div>
+
+    <!-- Bottom Note -->
+    <div class="bottom-note">No subscription. No commitment. No quarters needed.</div>
+
+    <!-- Tear-off Tabs -->
+    <div class="tear-off-container">
+      <div class="tear-tab">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fazlaundry.com" alt="QR" class="tear-tab-qr">
+        <div class="tear-tab-info">
+          <span class="phone">(480) 945-9939</span>
+          <span class="url">azlaundry.com</span>
+        </div>
+      </div>
+      <div class="tear-tab">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fazlaundry.com" alt="QR" class="tear-tab-qr">
+        <div class="tear-tab-info">
+          <span class="phone">(480) 945-9939</span>
+          <span class="url">azlaundry.com</span>
+        </div>
+      </div>
+      <div class="tear-tab">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fazlaundry.com" alt="QR" class="tear-tab-qr">
+        <div class="tear-tab-info">
+          <span class="phone">(480) 945-9939</span>
+          <span class="url">azlaundry.com</span>
+        </div>
+      </div>
+      <div class="tear-tab">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fazlaundry.com" alt="QR" class="tear-tab-qr">
+        <div class="tear-tab-info">
+          <span class="phone">(480) 945-9939</span>
+          <span class="url">azlaundry.com</span>
+        </div>
+      </div>
+      <div class="tear-tab">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fazlaundry.com" alt="QR" class="tear-tab-qr">
+        <div class="tear-tab-info">
+          <span class="phone">(480) 945-9939</span>
+          <span class="url">azlaundry.com</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>

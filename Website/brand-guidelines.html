@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AZ Laundry Service — Brand Guidelines</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: letter;
+    margin: 0;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Gotham', 'Gotham Medium', 'Montserrat', Arial, sans-serif;
+    color: #333;
+    font-size: 11pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.6in 0.75in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page:last-child {
+    page-break-after: avoid;
+  }
+
+  /* ─── COVER PAGE ─── */
+  .cover {
+    background: #8C1D40;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+  }
+
+  .cover-logo {
+    width: 3in;
+    margin-bottom: 0.5in;
+  }
+
+  .cover h1 {
+    font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', Arial, sans-serif;
+    font-size: 36pt;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 0.15in;
+  }
+
+  .cover h2 {
+    font-size: 14pt;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #FFC627;
+  }
+
+  .cover-year {
+    position: absolute;
+    bottom: 0.75in;
+    font-size: 10pt;
+    font-weight: 400;
+    color: rgba(255,255,255,0.5);
+  }
+
+  /* ─── SECTION HEADERS ─── */
+  .section-number {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #FFC627;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.05in;
+  }
+
+  .section-title {
+    font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', Arial, sans-serif;
+    font-size: 26pt;
+    font-weight: 900;
+    color: #8C1D40;
+    margin-bottom: 0.15in;
+    line-height: 1.1;
+  }
+
+  .section-intro {
+    font-size: 10.5pt;
+    color: #555;
+    max-width: 5.5in;
+    margin-bottom: 0.2in;
+    line-height: 1.5;
+  }
+
+  /* ─── TABLE OF CONTENTS ─── */
+  .toc {
+    padding-top: 1.5in;
+  }
+
+  .toc-list {
+    list-style: none;
+    margin-top: 0.4in;
+  }
+
+  .toc-list li {
+    display: flex;
+    align-items: baseline;
+    padding: 0.15in 0;
+    border-bottom: 1px solid #eee;
+    font-size: 12pt;
+  }
+
+  .toc-num {
+    font-weight: 700;
+    color: #FFC627;
+    width: 0.5in;
+    flex-shrink: 0;
+  }
+
+  .toc-label {
+    font-weight: 600;
+    color: #333;
+    flex-grow: 1;
+  }
+
+  /* ─── BRAND STORY ─── */
+  .brand-story {
+    padding-top: 1in;
+  }
+
+  .brand-values {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3in;
+    margin-top: 0.4in;
+  }
+
+  .brand-value {
+    padding: 0.25in;
+    border-left: 3px solid #FFC627;
+  }
+
+  .brand-value h4 {
+    font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', Arial, sans-serif;
+    font-size: 11pt;
+    font-weight: 900;
+    color: #8C1D40;
+    margin-bottom: 0.05in;
+  }
+
+  .brand-value p {
+    font-size: 9.5pt;
+    color: #555;
+    line-height: 1.5;
+  }
+
+  /* ─── LOGO SECTION ─── */
+  .logo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3in;
+    margin-top: 0.3in;
+  }
+
+  .logo-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .logo-card-preview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.2in;
+    min-height: 1.5in;
+  }
+
+  .logo-card-preview.light {
+    background: #f8f8f8;
+  }
+
+  .logo-card-preview.dark {
+    background: #1a1a1a;
+  }
+
+  .logo-card-preview img {
+    max-width: 100%;
+    max-height: 1.1in;
+    object-fit: contain;
+  }
+
+  .logo-card-label {
+    padding: 0.12in 0.2in;
+    border-top: 1px solid #e5e5e5;
+    background: white;
+  }
+
+  .logo-card-label h4 {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #333;
+  }
+
+  .logo-card-label p {
+    font-size: 8pt;
+    color: #888;
+    margin-top: 0.02in;
+  }
+
+  /* ─── CLEAR SPACE ─── */
+  .clearspace-demo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0.15in 0;
+  }
+
+  .clearspace-box {
+    position: relative;
+    display: inline-block;
+    padding: 0.35in;
+    border: 2px dashed #FFC627;
+  }
+
+  .clearspace-box img {
+    height: 0.9in;
+  }
+
+  .clearspace-label {
+    position: absolute;
+    font-size: 7pt;
+    color: #FFC627;
+    font-weight: 600;
+  }
+
+  .clearspace-label.top { top: 0.05in; left: 50%; transform: translateX(-50%); }
+  .clearspace-label.bottom { bottom: 0.05in; left: 50%; transform: translateX(-50%); }
+  .clearspace-label.left { left: 0.05in; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+  .clearspace-label.right { right: 0.05in; top: 50%; transform: translateY(-50%) rotate(90deg); }
+
+  /* ─── COLOR PALETTE ─── */
+  .color-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3in;
+    margin-top: 0.3in;
+  }
+
+  .color-card {
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .color-swatch { height: 0.8in; }
+
+  .color-info { padding: 0.15in 0.2in; }
+
+  .color-name {
+    font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', Arial, sans-serif;
+    font-size: 12pt;
+    font-weight: 900;
+    color: #333;
+    margin-bottom: 0.05in;
+  }
+
+  .color-codes {
+    font-size: 8.5pt;
+    color: #666;
+    line-height: 1.6;
+  }
+
+  .color-codes span {
+    display: inline-block;
+    margin-right: 0.15in;
+  }
+
+  .color-usage {
+    font-size: 8pt;
+    color: #999;
+    margin-top: 0.05in;
+    font-style: italic;
+  }
+
+  /* ─── TYPOGRAPHY ─── */
+  .type-showcase { margin: 0.3in 0; }
+
+  .type-weight {
+    display: flex;
+    align-items: baseline;
+    padding: 0.15in 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .type-weight-name {
+    width: 2in;
+    font-size: 9pt;
+    color: #888;
+    flex-shrink: 0;
+  }
+
+  .type-weight-sample {
+    font-size: 22pt;
+    color: #333;
+    flex-grow: 1;
+  }
+
+  .type-usage-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3in;
+    margin-top: 0.3in;
+  }
+
+  .type-usage-card {
+    padding: 0.2in;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+  }
+
+  .type-usage-card h4 {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #8C1D40;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.1in;
+  }
+
+  .type-usage-card .sample { margin-bottom: 0.1in; }
+  .type-usage-card .spec { font-size: 8pt; color: #999; }
+
+  /* ─── VOICE & TONE ─── */
+  .voice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3in;
+    margin-top: 0.3in;
+  }
+
+  .voice-card {
+    padding: 0.15in 0.2in;
+    border-radius: 8px;
+  }
+
+  .voice-card.do { background: #f1f8f1; border: 1px solid #c8e6c9; }
+  .voice-card.dont { background: #fef1f1; border: 1px solid #ffcdd2; }
+
+  .voice-card h4 { font-size: 10pt; font-weight: 700; margin-bottom: 0.1in; }
+  .voice-card.do h4 { color: #2e7d32; }
+  .voice-card.dont h4 { color: #c62828; }
+
+  .voice-card ul {
+    list-style: none;
+    font-size: 9pt;
+    line-height: 1.5;
+    color: #444;
+  }
+
+  .voice-card ul li::before { margin-right: 0.08in; font-weight: 700; }
+  .voice-card.do ul li::before { content: "\2713"; color: #2e7d32; }
+  .voice-card.dont ul li::before { content: "\2717"; color: #c62828; }
+
+  /* ─── EXAMPLES ─── */
+  .example-pair {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.15in;
+    margin-top: 0.1in;
+    margin-bottom: 0.15in;
+  }
+
+  .example-box {
+    padding: 0.12in 0.15in;
+    border-radius: 6px;
+    font-size: 9pt;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  .example-box.good {
+    background: #f1f8f1;
+    border-left: 3px solid #2e7d32;
+    color: #333;
+  }
+
+  .example-box.bad {
+    background: #fef1f1;
+    border-left: 3px solid #c62828;
+    color: #666;
+    text-decoration: line-through;
+    text-decoration-color: #c62828;
+  }
+
+  .example-box .tag {
+    display: block;
+    font-size: 7pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.05in;
+    font-style: normal;
+    text-decoration: none;
+  }
+
+  .example-box.good .tag { color: #2e7d32; }
+  .example-box.bad .tag { color: #c62828; }
+
+  /* ─── CONTACT ─── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.25in;
+    margin-top: 0.3in;
+  }
+
+  .contact-card {
+    padding: 0.25in;
+    background: #f8f8f8;
+    border-radius: 8px;
+    text-align: center;
+  }
+
+  .contact-card h4 {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #8C1D40;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.08in;
+  }
+
+  .contact-card p { font-size: 11pt; font-weight: 600; color: #333; }
+
+  .contact-card .sub {
+    font-size: 8pt;
+    color: #888;
+    font-weight: 400;
+    margin-top: 0.03in;
+  }
+
+  /* ─── MINIMUM SIZE ─── */
+  .minsize-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5in;
+    margin: 0.15in 0;
+    padding: 0.2in;
+    background: #f8f8f8;
+    border-radius: 8px;
+  }
+
+  .minsize-item { text-align: center; }
+  .minsize-item img { display: block; margin: 0 auto 0.1in; }
+  .minsize-item .spec { font-size: 8pt; color: #888; }
+
+  /* ─── FOOTER ─── */
+  .page-footer {
+    position: absolute;
+    bottom: 0.5in;
+    left: 0.75in;
+    right: 0.75in;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 7.5pt;
+    color: #bbb;
+    border-top: 1px solid #eee;
+    padding-top: 0.1in;
+  }
+
+  /* ─── DONT EXAMPLES (VISUAL) ─── */
+  .dont-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.25in;
+    margin-top: 0.3in;
+  }
+
+  .dont-item { text-align: center; }
+
+  .dont-box {
+    border: 2px solid #c62828;
+    border-radius: 8px;
+    padding: 0.2in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.2in;
+    margin-bottom: 0.08in;
+    position: relative;
+  }
+
+  .dont-box::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 6px;
+    background: linear-gradient(135deg, transparent 45%, #c62828 45%, #c62828 47%, transparent 47%, transparent 53%, #c62828 53%, #c62828 55%, transparent 55%);
+    opacity: 0.15;
+    pointer-events: none;
+  }
+
+  .dont-box img {
+    max-width: 100%;
+    max-height: 0.9in;
+    object-fit: contain;
+  }
+
+  .dont-label {
+    font-size: 8.5pt;
+    color: #c62828;
+    font-weight: 600;
+  }
+
+  /* ─── ASSET TABLE ─── */
+  .asset-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.3in;
+    font-size: 9pt;
+  }
+
+  .asset-table th {
+    text-align: left;
+    padding: 0.1in 0.15in;
+    background: #8C1D40;
+    color: white;
+    font-weight: 600;
+    font-size: 8pt;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .asset-table td {
+    padding: 0.08in 0.15in;
+    border-bottom: 1px solid #eee;
+    color: #444;
+  }
+
+  .asset-table tr:nth-child(even) td { background: #fafafa; }
+
+  .file-tag {
+    display: inline-block;
+    padding: 0.01in 0.06in;
+    border-radius: 3px;
+    font-size: 7pt;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-right: 0.04in;
+  }
+
+  .file-tag.vec { background: #e8f5e9; color: #2e7d32; }
+  .file-tag.img { background: #e3f2fd; color: #1565c0; }
+  .file-tag.src { background: #fff3e0; color: #e65100; }
+
+  /* ─── PRINT STYLES ─── */
+  @media print {
+    html, body {
+      margin: 0 !important;
+      padding: 0 !important;
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+
+    .page {
+      box-shadow: none;
+      page-break-after: always;
+      margin: 0 !important;
+    }
+
+    .page:last-child {
+      page-break-after: avoid;
+    }
+
+    .logo-card,
+    .color-card,
+    .brand-value,
+    .type-usage-card,
+    .voice-card,
+    .contact-card,
+    .dont-item {
+      break-inside: avoid;
+    }
+
+    .logo-grid,
+    .color-grid,
+    .type-usage-grid,
+    .voice-grid,
+    .dont-grid {
+      break-inside: avoid;
+    }
+
+    table { break-inside: avoid; }
+    tr { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════ PAGE 1: COVER ════════════════════════════════════════════ -->
+<div class="page cover">
+  <img src="az_laundry_logos/AZ-LAUNDRY-WEB3.jpg" class="cover-logo" style="width: 4in; border-radius: 0;">
+  <h1>Brand<br>Guidelines</h1>
+  <h2>Identity Standards &amp; Usage</h2>
+  <div class="cover-year">azlaundry.com &nbsp;&middot;&nbsp; 2026</div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 2: TOC ════════════════════════════════════════════ -->
+<div class="page toc">
+  <div class="section-number">Contents</div>
+  <div class="section-title">Table of Contents</div>
+
+  <ol class="toc-list">
+    <li><span class="toc-num">01</span><span class="toc-label">Our Brand</span></li>
+    <li><span class="toc-num">02</span><span class="toc-label">Logo &mdash; Primary Marks</span></li>
+    <li><span class="toc-num">03</span><span class="toc-label">Logo &mdash; Usage &amp; Clear Space</span></li>
+    <li><span class="toc-num">04</span><span class="toc-label">Logo &mdash; Don'ts</span></li>
+    <li><span class="toc-num">05</span><span class="toc-label">Color Palette</span></li>
+    <li><span class="toc-num">06</span><span class="toc-label">Typography</span></li>
+    <li><span class="toc-num">07</span><span class="toc-label">Brand Voice &amp; Tone</span></li>
+    <li><span class="toc-num">08</span><span class="toc-label">Digital Presence &amp; Contact</span></li>
+    <li><span class="toc-num">09</span><span class="toc-label">Asset Library</span></li>
+  </ol>
+
+  <div style="margin-top: 0.6in;">
+    <div class="section-number" style="color:#8C1D40;">About This Document</div>
+    <p style="font-size: 9.5pt; color: #777; line-height: 1.6; max-width: 5in;">
+      This brand guidelines document defines the visual identity and communication standards for AZ Laundry Service.
+      All marketing materials, digital assets, and communications should follow these guidelines to maintain a consistent,
+      recognizable brand across every touchpoint.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>2</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 3: OUR BRAND ════════════════════════════════════════════ -->
+<div class="page brand-story">
+  <div class="section-number">01</div>
+  <div class="section-title">Our Brand</div>
+
+  <p class="section-intro">
+    AZ Laundry Service is a pickup-and-delivery laundry service built for college students in the Tempe and
+    Scottsdale area. We make laundry disappear so students can focus on what actually matters &mdash; studying,
+    socializing, and surviving college. No subscriptions, no hassle, no trips to the laundromat.
+  </p>
+
+  <div class="brand-values">
+    <div class="brand-value">
+      <h4>Simple</h4>
+      <p>No subscriptions. No long-term commitments. Text Dave, we pick it up, we bring it back. That's it.</p>
+    </div>
+    <div class="brand-value">
+      <h4>Affordable</h4>
+      <p>$1.50/lb with a $20 minimum. 50% off your first order. Built for a student budget.</p>
+    </div>
+    <div class="brand-value">
+      <h4>Fast</h4>
+      <p>48-hour turnaround. Free pickup and delivery. Your laundry comes back clean, folded, and ready.</p>
+    </div>
+    <div class="brand-value">
+      <h4>Local</h4>
+      <p>Arizona-based, ASU-adjacent, and run by real people. Not a faceless corporate laundry app.</p>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.5in;">
+    <div class="section-number" style="color:#8C1D40;">Target Audience</div>
+    <p style="font-size: 10pt; color: #555; line-height: 1.6; margin-top: 0.1in;">
+      ASU college students aged 18&ndash;24 in Tempe and Scottsdale, Arizona. Our brand voice speaks to them
+      like a peer &mdash; casual, direct, and no-nonsense. We never sound corporate or overly polished.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>3</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 4: LOGO PRIMARY MARKS ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">02</div>
+  <div class="section-title">Logo &mdash; Primary Marks</div>
+
+  <p class="section-intro">
+    Our logo features a maroon shield with a delivery van, laundry bag, washing machine porthole, Arizona
+    sun rays, cactus, and stars. The wordmark reads "AZ LAUNDRY SERVICE" with the website URL. The logo
+    is available in several configurations for different uses.
+  </p>
+
+  <div class="logo-grid">
+    <div class="logo-card">
+      <div class="logo-card-preview light">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" alt="Primary logo — full color on white">
+      </div>
+      <div class="logo-card-label">
+        <h4>Primary Logo &mdash; Light Background</h4>
+        <p>Full-color version for white or light surfaces. Default choice.</p>
+      </div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-card-preview dark">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB1.jpg" alt="Primary logo — dark background" style="max-height: 1.3in;">
+      </div>
+      <div class="logo-card-label">
+        <h4>Primary Logo &mdash; Dark Background</h4>
+        <p>White/gold text version for dark or maroon surfaces.</p>
+      </div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-card-preview light">
+        <img src="az_laundry_logos/AZ-LAUND-icon512.png" alt="Icon mark">
+      </div>
+      <div class="logo-card-label">
+        <h4>Icon Mark &mdash; Shield Only</h4>
+        <p>Favicons, app icons, social avatars, small spaces.</p>
+      </div>
+    </div>
+    <div class="logo-card">
+      <div class="logo-card-preview" style="background: #8C1D40;">
+        <img src="az_laundry_logos/AZ-LAUND-icon512.png" alt="Icon mark on maroon">
+      </div>
+      <div class="logo-card-label">
+        <h4>Icon Mark &mdash; On Brand Maroon</h4>
+        <p>Shield on the primary maroon background.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.3in; padding: 0.15in 0.2in; background: #fffde7; border-radius: 6px; border: 1px solid #fff9c4;">
+    <p style="font-size: 8.5pt; color: #666;">
+      <strong style="color:#333;">Preferred logo:</strong> Always use the <strong>full-color version on light backgrounds</strong> (top left)
+      as the default. Only use the dark background version when the surface is dark or when contrast requires it.
+      Use the shield icon only when space is too small for the full wordmark.
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>4</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 5: LOGO USAGE ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">03</div>
+  <div class="section-title">Logo Usage &amp;<br>Clear Space</div>
+
+  <p class="section-intro">
+    Maintain clear space around the logo equal to the height of the "AZ" text in the wordmark. This ensures
+    the logo is always legible and never crowded by other elements.
+  </p>
+
+  <div class="clearspace-demo">
+    <div class="clearspace-box">
+      <span class="clearspace-label top">X</span>
+      <span class="clearspace-label bottom">X</span>
+      <span class="clearspace-label left">X</span>
+      <span class="clearspace-label right">X</span>
+      <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" alt="Clear space demo">
+    </div>
+  </div>
+
+  <p style="font-size: 9pt; color: #888; text-align: center; margin-bottom: 0.3in;">
+    X = height of "AZ" lettering in the wordmark. Maintain this minimum space on all sides.
+  </p>
+
+  <div style="margin-bottom: 0.3in;">
+    <div class="section-number" style="color:#8C1D40;">Minimum Sizes</div>
+    <div class="minsize-row">
+      <div class="minsize-item">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" alt="Full logo min" style="width: 2in;">
+        <div class="spec">Full Logo: min 1.5 inches wide (print) / 150px (digital)</div>
+      </div>
+      <div class="minsize-item">
+        <img src="az_laundry_logos/AZ-LAUND-icon512.png" alt="Icon min" style="width: 0.4in;">
+        <div class="spec">Icon: min 0.35 inches (print) / 32px (digital)</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="section-number" style="color:#8C1D40;">Approved Backgrounds</div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.15in; margin-top: 0.15in;">
+      <div style="background: #ffffff; border: 1px solid #e5e5e5; border-radius: 6px; padding: 0.15in; display: flex; align-items: center; justify-content: center;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" style="max-width: 100%; max-height: 0.6in;">
+      </div>
+      <div style="background: #f5f5f5; border-radius: 6px; padding: 0.15in; display: flex; align-items: center; justify-content: center;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" style="max-width: 100%; max-height: 0.6in;">
+      </div>
+      <div style="background: #1a1a1a; border-radius: 6px; padding: 0.15in; display: flex; align-items: center; justify-content: center;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB1.jpg" style="max-width: 100%; max-height: 0.6in;">
+      </div>
+      <div style="background: #8C1D40; border-radius: 6px; padding: 0.15in; display: flex; align-items: center; justify-content: center;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB3.jpg" style="max-width: 100%; max-height: 0.6in;">
+      </div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.15in; margin-top: 0.05in;">
+      <p style="font-size: 7pt; color: #999; text-align: center;">White</p>
+      <p style="font-size: 7pt; color: #999; text-align: center;">Light Gray</p>
+      <p style="font-size: 7pt; color: #999; text-align: center;">Dark / Black</p>
+      <p style="font-size: 7pt; color: #999; text-align: center;">Brand Maroon</p>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>5</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 6: LOGO DON'TS ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">04</div>
+  <div class="section-title">Logo Don'ts</div>
+
+  <p class="section-intro">
+    To protect the integrity of our brand, never modify the logo in any of the following ways. Always use
+    the provided logo files as-is.
+  </p>
+
+  <div class="dont-grid">
+    <div class="dont-item">
+      <div class="dont-box" style="background: #f8f8f8;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" style="transform: scaleX(1.4);">
+      </div>
+      <div class="dont-label">Don't stretch or distort</div>
+    </div>
+    <div class="dont-item">
+      <div class="dont-box" style="background: #f8f8f8;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" style="opacity: 0.3;">
+      </div>
+      <div class="dont-label">Don't use at low opacity</div>
+    </div>
+    <div class="dont-item">
+      <div class="dont-box" style="background: #f8f8f8;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" style="filter: grayscale(100%);">
+      </div>
+      <div class="dont-label">Don't use in grayscale</div>
+    </div>
+    <div class="dont-item">
+      <div class="dont-box" style="background: #f8f8f8;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" style="transform: rotate(15deg); max-height: 0.8in;">
+      </div>
+      <div class="dont-label">Don't rotate the logo</div>
+    </div>
+    <div class="dont-item">
+      <div class="dont-box" style="background: #f8f8f8;">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png" style="filter: drop-shadow(4px 4px 8px rgba(0,0,0,0.5));">
+      </div>
+      <div class="dont-label">Don't add drop shadows</div>
+    </div>
+    <div class="dont-item">
+      <div class="dont-box" style="background: linear-gradient(135deg, #ff6b6b, #4ecdc4);">
+        <img src="az_laundry_logos/AZ-LAUNDRY-WEB5.png">
+      </div>
+      <div class="dont-label">Don't place on busy backgrounds</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.35in; padding: 0.2in; background: #fef1f1; border-radius: 8px; border: 1px solid #ffcdd2;">
+    <p style="font-size: 9pt; color: #555; line-height: 1.6;">
+      <strong style="color: #c62828;">Additional restrictions:</strong>
+    </p>
+    <ul style="font-size: 9pt; color: #555; line-height: 1.8; margin-left: 0.2in; margin-top: 0.05in;">
+      <li>Don't rearrange the shield and wordmark elements</li>
+      <li>Don't change the logo colors or recolor any part</li>
+      <li>Don't add outlines, borders, or strokes to the logo</li>
+      <li>Don't place text or other logos overlapping the mark</li>
+      <li>Don't recreate or redraw the logo &mdash; always use the provided files</li>
+      <li>Don't use the logo as a pattern or repeating background</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>6</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 7: COLOR PALETTE ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">05</div>
+  <div class="section-title">Color Palette</div>
+
+  <p class="section-intro">
+    Our color palette is inspired by Arizona State University and the Arizona desert. Maroon is our
+    dominant brand color. Gold is our accent, used to highlight key information and calls to action.
+  </p>
+
+  <div class="color-grid">
+    <div class="color-card">
+      <div class="color-swatch" style="background: #8C1D40;"></div>
+      <div class="color-info">
+        <div class="color-name">ASU Maroon</div>
+        <div class="color-codes">
+          <span><strong>HEX</strong> #8C1D40</span>
+          <span><strong>RGB</strong> 140, 29, 64</span><br>
+          <span><strong>CMYK</strong> 25, 100, 50, 30</span>
+        </div>
+        <div class="color-usage">Primary brand color. Backgrounds, headers, text.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #FFC627;"></div>
+      <div class="color-info">
+        <div class="color-name">Sun Gold</div>
+        <div class="color-codes">
+          <span><strong>HEX</strong> #FFC627</span>
+          <span><strong>RGB</strong> 255, 198, 39</span><br>
+          <span><strong>CMYK</strong> 0, 20, 90, 0</span>
+        </div>
+        <div class="color-usage">Accent color. CTAs, highlights, pricing, icons.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #FFFFFF; border-bottom: 1px solid #eee;"></div>
+      <div class="color-info">
+        <div class="color-name">White</div>
+        <div class="color-codes">
+          <span><strong>HEX</strong> #FFFFFF</span>
+          <span><strong>RGB</strong> 255, 255, 255</span><br>
+          <span><strong>CMYK</strong> 0, 0, 0, 0</span>
+        </div>
+        <div class="color-usage">Backgrounds, text on dark surfaces, clean space.</div>
+      </div>
+    </div>
+    <div class="color-card">
+      <div class="color-swatch" style="background: #333333;"></div>
+      <div class="color-info">
+        <div class="color-name">Charcoal</div>
+        <div class="color-codes">
+          <span><strong>HEX</strong> #333333</span>
+          <span><strong>RGB</strong> 51, 51, 51</span><br>
+          <span><strong>CMYK</strong> 0, 0, 0, 85</span>
+        </div>
+        <div class="color-usage">Body text, secondary elements. Never use pure black.</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.35in;">
+    <div class="section-number" style="color:#8C1D40;">Logo-Specific Colors</div>
+    <p style="font-size: 9pt; color: #777; margin-top: 0.08in; margin-bottom: 0.15in;">
+      The logo artwork uses specific tones that differ slightly from the brand palette. Do not extract
+      colors from the logo for other uses &mdash; always use the brand palette above.
+    </p>
+    <div style="display: flex; gap: 0.3in;">
+      <div style="display: flex; align-items: center; gap: 0.1in;">
+        <div style="width: 0.3in; height: 0.3in; border-radius: 4px; background: #6F162C; border: 1px solid #ddd;"></div>
+        <div>
+          <div style="font-size: 8.5pt; font-weight: 600; color: #333;">Logo Maroon</div>
+          <div style="font-size: 7.5pt; color: #888;">#6F162C</div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 0.1in;">
+        <div style="width: 0.3in; height: 0.3in; border-radius: 4px; background: #EFB52F; border: 1px solid #ddd;"></div>
+        <div>
+          <div style="font-size: 8.5pt; font-weight: 600; color: #333;">Logo Gold</div>
+          <div style="font-size: 7.5pt; color: #888;">#EFB52F</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.35in;">
+    <div class="section-number" style="color:#8C1D40;">Color Proportions</div>
+    <div style="display: flex; height: 0.4in; border-radius: 6px; overflow: hidden; margin-top: 0.1in; border: 1px solid #e5e5e5;">
+      <div style="flex: 5; background: #8C1D40;"></div>
+      <div style="flex: 2; background: #FFC627;"></div>
+      <div style="flex: 3; background: #FFFFFF;"></div>
+      <div style="flex: 1; background: #333333;"></div>
+    </div>
+    <div style="display: flex; margin-top: 0.05in;">
+      <div style="flex: 5; font-size: 7pt; color: #888; text-align: center;">Maroon 45%</div>
+      <div style="flex: 2; font-size: 7pt; color: #888; text-align: center;">Gold 20%</div>
+      <div style="flex: 3; font-size: 7pt; color: #888; text-align: center;">White 25%</div>
+      <div style="flex: 1; font-size: 7pt; color: #888; text-align: center;">Dark 10%</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>7</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 8: TYPOGRAPHY ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">06</div>
+  <div class="section-title">Typography</div>
+
+  <p class="section-intro">
+    Our brand uses two weights from the Gotham type family. Gotham's clean, geometric forms project
+    confidence and modernity &mdash; matching our straightforward, no-nonsense brand personality.
+  </p>
+
+  <div style="margin: 0.15in 0; padding: 0.2in; background: #f8f8f8; border-radius: 8px;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.3in;">
+      <div>
+        <div style="font-size: 8pt; font-weight: 700; color: #FFC627; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.05in;">Primary &mdash; Headlines</div>
+        <div style="font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', Arial, sans-serif; font-size: 24pt; font-weight: 900; color: #8C1D40; line-height: 1.1; margin-bottom: 0.08in;">
+          Gotham Narrow<br>Black
+        </div>
+        <div style="font-size: 9pt; color: #888;">
+          Use for all headlines, hero text, section headers,<br>
+          and bold display typography.
+        </div>
+      </div>
+      <div>
+        <div style="font-size: 8pt; font-weight: 700; color: #FFC627; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.05in;">Secondary &mdash; Body</div>
+        <div style="font-family: 'Gotham', 'Gotham Medium', 'Montserrat', Arial, sans-serif; font-size: 24pt; font-weight: 500; color: #333; line-height: 1.1; margin-bottom: 0.08in;">
+          Gotham<br>Medium
+        </div>
+        <div style="font-size: 9pt; color: #888;">
+          Use for body copy, subheadlines, descriptions,<br>
+          captions, and all supporting text.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 0.15in;">
+    <div class="section-number" style="color:#8C1D40;">Character Set</div>
+    <div style="font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', Arial, sans-serif; font-size: 13pt; font-weight: 900; color: #333; margin-top: 0.05in; letter-spacing: 0.03em;">
+      ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+      abcdefghijklmnopqrstuvwxyz<br>
+      0123456789 !@#$%&amp;*()
+    </div>
+  </div>
+
+  <div class="type-usage-grid">
+    <div class="type-usage-card">
+      <h4>Headlines</h4>
+      <div class="sample" style="font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', sans-serif; font-size: 18pt; font-weight: 900; color: #8C1D40;">Laundry. Done.</div>
+      <div class="spec">Gotham Narrow Black &middot; 24&ndash;48pt &middot; Maroon or Dark</div>
+    </div>
+    <div class="type-usage-card">
+      <h4>Subheadlines</h4>
+      <div class="sample" style="font-family: 'Gotham', 'Montserrat', sans-serif; font-size: 13pt; font-weight: 500; color: #333;">Free Pickup &amp; Delivery</div>
+      <div class="spec">Gotham Medium &middot; 14&ndash;20pt &middot; Charcoal</div>
+    </div>
+    <div class="type-usage-card">
+      <h4>Body Copy</h4>
+      <div class="sample" style="font-family: 'Gotham', 'Montserrat', sans-serif; font-size: 10pt; font-weight: 500; color: #555;">We pick up your dirty laundry and bring it back clean, folded, and fresh within 48 hours.</div>
+      <div class="spec">Gotham Medium &middot; 10&ndash;12pt &middot; Charcoal or #555</div>
+    </div>
+    <div class="type-usage-card">
+      <h4>CTAs &amp; Buttons</h4>
+      <div class="sample">
+        <span style="display: inline-block; background: #FFC627; color: #333; font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', sans-serif; font-weight: 900; font-size: 10pt; padding: 0.06in 0.2in; border-radius: 4px;">Get Started</span>
+      </div>
+      <div class="spec">Gotham Narrow Black &middot; 10&ndash;14pt &middot; Dark on Gold</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.3in; padding: 0.15in 0.2in; background: #f8f8f8; border-radius: 6px;">
+    <p style="font-size: 8.5pt; color: #666; line-height: 1.6;">
+      <strong style="color:#333;">Fallback fonts:</strong> If Gotham is unavailable, use <strong>Montserrat</strong>
+      (Google Fonts, free) as the closest substitute. Never use serif typefaces.
+      <br><strong style="color:#333;">Licensing:</strong> Gotham is a commercial typeface by Hoefler&amp;Co. Ensure proper
+      licensing for all uses (web, print, app).
+    </p>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>8</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 9: VOICE & TONE ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">07</div>
+  <div class="section-title">Brand Voice<br>&amp; Tone</div>
+
+  <p class="section-intro">
+    We talk to students like a friend who happens to do their laundry. Casual, direct, and zero fluff.
+    Short sentences. Real talk. No marketing buzzwords.
+  </p>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0.15in; margin-bottom: 0.2in;">
+    <div style="text-align: center; padding: 0.12in 0.1in; background: #8C1D40; border-radius: 6px;">
+      <div style="font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', sans-serif; font-size: 11pt; font-weight: 900; color: #FFC627;">Casual</div>
+      <div style="font-size: 7pt; color: rgba(255,255,255,0.7); margin-top: 0.03in;">Like texting a friend</div>
+    </div>
+    <div style="text-align: center; padding: 0.12in 0.1in; background: #8C1D40; border-radius: 6px;">
+      <div style="font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', sans-serif; font-size: 11pt; font-weight: 900; color: #FFC627;">Direct</div>
+      <div style="font-size: 7pt; color: rgba(255,255,255,0.7); margin-top: 0.03in;">Get to the point</div>
+    </div>
+    <div style="text-align: center; padding: 0.12in 0.1in; background: #8C1D40; border-radius: 6px;">
+      <div style="font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', sans-serif; font-size: 11pt; font-weight: 900; color: #FFC627;">Honest</div>
+      <div style="font-size: 7pt; color: rgba(255,255,255,0.7); margin-top: 0.03in;">No hidden fees or tricks</div>
+    </div>
+    <div style="text-align: center; padding: 0.12in 0.1in; background: #8C1D40; border-radius: 6px;">
+      <div style="font-family: 'Gotham Narrow', 'Gotham', 'Montserrat', sans-serif; font-size: 11pt; font-weight: 900; color: #FFC627;">Fun</div>
+      <div style="font-size: 7pt; color: rgba(255,255,255,0.7); margin-top: 0.03in;">Laundry doesn't have to suck</div>
+    </div>
+  </div>
+
+  <div class="voice-grid">
+    <div class="voice-card do">
+      <h4>Do</h4>
+      <ul>
+        <li>Use short, punchy sentences</li>
+        <li>Talk like a peer, not a corporation</li>
+        <li>Use "you" and "your" &mdash; speak directly</li>
+        <li>Be specific with pricing and timelines</li>
+        <li>Use humor when it feels natural</li>
+        <li>Address real student pain points</li>
+      </ul>
+    </div>
+    <div class="voice-card dont">
+      <h4>Don't</h4>
+      <ul>
+        <li>Use corporate jargon or buzzwords</li>
+        <li>Over-explain or use filler words</li>
+        <li>Be vague about costs or process</li>
+        <li>Use exclamation points excessively</li>
+        <li>Say "we're passionate about laundry"</li>
+        <li>Sound like a generic startup pitch</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.3in;">
+    <div class="section-number" style="color:#8C1D40;">Copy Examples</div>
+  </div>
+
+  <div class="example-pair">
+    <div class="example-box good">
+      <span class="tag">Write this</span>
+      "Your laundry pile is judging you. We'll make it disappear. $1.50/lb, 48 hours, done."
+    </div>
+    <div class="example-box bad">
+      <span class="tag">Not this</span>
+      "At AZ Laundry Service, we are passionate about providing exceptional laundry solutions for the modern student lifestyle."
+    </div>
+  </div>
+
+  <div class="example-pair" style="margin-top: 0;">
+    <div class="example-box good">
+      <span class="tag">Write this</span>
+      "Text Dave. We pick it up. You get it back clean. That's it."
+    </div>
+    <div class="example-box bad">
+      <span class="tag">Not this</span>
+      "Our seamless pickup and delivery process ensures a hassle-free experience from start to finish!"
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>9</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 10: DIGITAL & CONTACT ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">08</div>
+  <div class="section-title">Digital Presence<br>&amp; Contact</div>
+
+  <p class="section-intro">
+    Consistency across every touchpoint &mdash; website, social media, print, and direct communication.
+  </p>
+
+  <div class="contact-grid">
+    <div class="contact-card">
+      <h4>Website</h4>
+      <p>azlaundry.com</p>
+      <div class="sub">Primary digital presence</div>
+    </div>
+    <div class="contact-card">
+      <h4>Instagram</h4>
+      <p>@azlaundryservice</p>
+      <div class="sub">Social media &amp; content</div>
+    </div>
+    <div class="contact-card">
+      <h4>Phone / Text</h4>
+      <p>(480) 945-9939</p>
+      <div class="sub">Dave &mdash; call or text</div>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.4in;">
+    <div class="section-number" style="color:#8C1D40;">Key Messaging</div>
+    <div style="margin-top: 0.15in;">
+      <table style="width: 100%; border-collapse: collapse; font-size: 9.5pt;">
+        <tr>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; font-weight: 600; color: #8C1D40; width: 1.5in;">Pricing</td>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; color: #444;">$1.50/lb &middot; $20 minimum</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; font-weight: 600; color: #8C1D40;">Turnaround</td>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; color: #444;">48 hours</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; font-weight: 600; color: #8C1D40;">Delivery</td>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; color: #444;">Free pickup &amp; delivery</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; font-weight: 600; color: #8C1D40;">Commitment</td>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; color: #444;">No subscription required &mdash; as-needed only</td>
+        </tr>
+        <tr>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; font-weight: 600; color: #8C1D40;">Promo</td>
+          <td style="padding: 0.1in 0.15in; border-bottom: 1px solid #eee; color: #444;">50% off first order &mdash; coupon code: <strong>FIRST50</strong></td>
+        </tr>
+        <tr>
+          <td style="padding: 0.1in 0.15in; font-weight: 600; color: #8C1D40;">Service Area</td>
+          <td style="padding: 0.1in 0.15in; color: #444;">Tempe &amp; Scottsdale, AZ (ASU area)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div style="margin-top: 0.4in;">
+    <div class="section-number" style="color:#8C1D40;">Social Media Guidelines</div>
+    <ul style="font-size: 9.5pt; color: #555; line-height: 1.8; margin-top: 0.1in; margin-left: 0.2in;">
+      <li>Use the <strong>shield icon</strong> as the profile picture on all platforms</li>
+      <li>Use the <strong>full logo on dark background</strong> for cover photos and banners</li>
+      <li>Maintain the brand voice in all captions and comments</li>
+      <li>Keep imagery authentic &mdash; no stock photos or AI-generated images</li>
+      <li>Use brand colors consistently in graphics and stories</li>
+      <li>Always include contact info (phone, website) in bio</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>10</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════════ PAGE 11: ASSET LIBRARY ════════════════════════════════════════════ -->
+<div class="page">
+  <div class="section-number">09</div>
+  <div class="section-title">Asset Library</div>
+
+  <p class="section-intro">
+    Complete inventory of available logo files. Vector formats (SVG, AI, EPS) should be used for print
+    production. PNG/JPG files are for digital and web use.
+  </p>
+
+  <table class="asset-table">
+    <thead>
+      <tr>
+        <th>File</th>
+        <th>Format</th>
+        <th>Use Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>AZ LAUNDRY WEB5</strong></td>
+        <td>
+          <span class="file-tag vec">SVG</span>
+          <span class="file-tag src">AI</span>
+          <span class="file-tag src">EPS</span>
+          <span class="file-tag img">PNG</span>
+        </td>
+        <td>Primary full-color logo &mdash; light backgrounds</td>
+      </tr>
+      <tr>
+        <td><strong>AZ LAUNDRY WEB1</strong></td>
+        <td>
+          <span class="file-tag vec">SVG</span>
+          <span class="file-tag src">AI</span>
+          <span class="file-tag src">EPS</span>
+          <span class="file-tag img">JPG</span>
+        </td>
+        <td>Full logo with gold "LAUNDRY" &mdash; dark backgrounds</td>
+      </tr>
+      <tr>
+        <td><strong>AZ LAUNDRY WEB3</strong></td>
+        <td>
+          <span class="file-tag vec">SVG</span>
+          <span class="file-tag src">AI</span>
+          <span class="file-tag src">EPS</span>
+          <span class="file-tag img">JPG</span>
+        </td>
+        <td>All-white text version &mdash; dark backgrounds</td>
+      </tr>
+      <tr>
+        <td><strong>AZ LAUNDRY WEB2</strong></td>
+        <td>
+          <span class="file-tag vec">SVG</span>
+          <span class="file-tag src">AI</span>
+          <span class="file-tag src">EPS</span>
+          <span class="file-tag img">PNG</span>
+          <span class="file-tag img">JPG</span>
+        </td>
+        <td>Outlined text variant &mdash; light backgrounds</td>
+      </tr>
+      <tr>
+        <td><strong>AZ LAUNDRY WEB / WEB4 / WEB6</strong></td>
+        <td>
+          <span class="file-tag vec">SVG</span>
+          <span class="file-tag src">AI</span>
+          <span class="file-tag src">EPS</span>
+          <span class="file-tag img">PNG</span>
+        </td>
+        <td>Alternate outlined text variants</td>
+      </tr>
+      <tr>
+        <td><strong>AZ LAUND icon</strong></td>
+        <td>
+          <span class="file-tag vec">SVG</span>
+          <span class="file-tag src">AI</span>
+          <span class="file-tag src">EPS</span>
+          <span class="file-tag img">PNG</span>
+        </td>
+        <td>Shield icon only &mdash; high resolution</td>
+      </tr>
+      <tr>
+        <td><strong>AZ-LAUND-icon512</strong></td>
+        <td><span class="file-tag img">PNG</span></td>
+        <td>Shield icon 512px &mdash; social avatars, app icon</td>
+      </tr>
+      <tr>
+        <td><strong>AZ-LAUND-icon180</strong></td>
+        <td><span class="file-tag img">PNG</span></td>
+        <td>Apple Touch icon (180px)</td>
+      </tr>
+      <tr>
+        <td><strong>AZ-LAUND-icon-32</strong></td>
+        <td><span class="file-tag img">PNG</span></td>
+        <td>Browser favicon (32px)</td>
+      </tr>
+      <tr>
+        <td><strong>AZ-LAUND-icon-16</strong></td>
+        <td><span class="file-tag img">PNG</span></td>
+        <td>Browser favicon (16px)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 0.35in; padding: 0.2in; background: #f8f8f8; border-radius: 8px;">
+    <p style="font-size: 9pt; color: #555; line-height: 1.6;">
+      <strong style="color:#333;">File format guide:</strong><br>
+      <span class="file-tag vec">SVG</span> Scalable vector &mdash; web, responsive design<br>
+      <span class="file-tag src">AI</span> Adobe Illustrator source &mdash; print production, editing<br>
+      <span class="file-tag src">EPS</span> Encapsulated PostScript &mdash; print production, signage<br>
+      <span class="file-tag img">PNG</span> Transparent background &mdash; digital, web, presentations<br>
+      <span class="file-tag img">JPG</span> Flat background &mdash; social media, email
+    </p>
+  </div>
+
+  <div style="margin-top: 0.4in; text-align: center; color: #bbb; font-size: 9pt;">
+    &mdash; End of Brand Guidelines &mdash;<br>
+    <span style="font-size: 8pt;">AZ Laundry Service &middot; azlaundry.com &middot; (480) 945-9939</span>
+  </div>
+
+  <div class="page-footer">
+    <span>AZ Laundry Service &mdash; Brand Guidelines</span>
+    <span>11</span>
+  </div>
+</div>
+
+</body>
+</html>

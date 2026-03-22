@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── CSS Variables ───────────────────────────────────────────────────────── */
+:root {
+  --color-primary: #8C1D40;
+  --color-accent: #FFC627;
+  --color-dark: #333333;
+  --color-surface: #F9F9F9;
+  --color-footer: #1A1A1A;
+}
+
+/* ── Base ────────────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #333333;
+}
+
+/* ── Focus Ring (WCAG AA — gold outline) ─────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid #FFC627;
+  outline-offset: 2px;
+}
+
+/* ── Scrollbar Hide ──────────────────────────────────────────────────────── */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Keyframes ───────────────────────────────────────────────────────────── */
+
+/* Hero CTA gold glow pulse */
+@keyframes ctaGlowPulse {
+  0%, 100% { box-shadow: 0 4px 24px rgba(255, 198, 39, 0); }
+  50%       { box-shadow: 0 4px 32px rgba(255, 198, 39, 0.55); }
+}
+
+/* Featured pricing card gold ring pulse */
+@keyframes goldPulse {
+  0%, 100% {
+    box-shadow: 0 8px 40px rgba(140, 29, 64, 0.18),
+                0 0 0 2px #FFC627;
+  }
+  50% {
+    box-shadow: 0 12px 50px rgba(140, 29, 64, 0.25),
+                0 0 0 4px #FFC627;
+  }
+}
+
+/* Trust badge shimmer — runs once on entrance */
+@keyframes shimmer {
+  0%   { transform: translateX(-150%); }
+  100% { transform: translateX(250%); }
+}
+
+/* ── Animation Classes ───────────────────────────────────────────────────── */
+.cta-glow-pulse {
+  animation: ctaGlowPulse 2.5s ease-in-out infinite;
+}
+
+.gold-pulse-card {
+  animation: goldPulse 3s ease-in-out infinite;
+}
+
+/* Shimmer sweep — runs once after a short delay */
+.shimmer-strip {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer-strip::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  width: 60%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  animation: shimmer 1.5s ease 0.6s 1 both;
+  pointer-events: none;
+}
+
+/* ── Reduced Motion ──────────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
